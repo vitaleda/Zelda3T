@@ -44,9 +44,14 @@ special1(0), special2(0), persistent(p), type_att(ENNEMI), dist(16) {
 }
 
 Ennemi::~Ennemi() {
-    if (!chargeIm) image = NULL;
     delete zonesAttaques;
     delete zonesVulnerables;
+    if (!chargeIm) image = NULL;
+    if (suivant != NULL) {
+        Ennemi* ennemi_ = (Ennemi*)suivant;
+        suivant = NULL;
+        delete ennemi_;
+    }
 }
 
 void Ennemi::drawSpecial(SDL_Surface* gpScreen) {
@@ -3508,6 +3513,14 @@ void Ennemi::init() {
     vitesse=1; force=0; recul=16; glace=0; maxglace=60; typeEnn=E_SIMPLE;
     for (int k = 0; k < 25; k++) effets[k]=2;
     for (int k = 0; k < 3; k++) objets[k]=0;
+
+    if (zonesAttaques != NULL) {
+        delete zonesAttaques;
+    }
+    if (zonesVulnerables != NULL) {
+        delete zonesVulnerables;
+    }
+
     switch (id) {
         case 1 :
             viemax=3; w=16; h=26; animmax=1; typeIA=IA_FONCE; porte=160; force = 2;

@@ -21,6 +21,11 @@ ZoneRect::ZoneRect(int x, int y, int w, int h) : Listable() {
 
 ZoneRect::~ZoneRect() {
     delete zone;
+    if (suivant != NULL) {
+        ZoneRect* zone_ = (ZoneRect*)suivant;
+        suivant = NULL;
+        delete zone_;
+    }
 }
 
 void ZoneRect::setZone(SDL_Rect* zn) {

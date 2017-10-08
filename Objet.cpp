@@ -44,7 +44,13 @@ h(17), max(0), persist(persistant) {
     lastAnimTime = SDL_GetTicks();
 }
 
-Objet::~Objet() {}
+Objet::~Objet() {
+    if (suivant != NULL) {
+        Objet* objet_ = (Objet*)suivant;
+        suivant = NULL;
+        delete objet_;
+    }
+}
 
 void Objet::draw(SDL_Surface* gpScreen) {
     int phg[2];
@@ -119,13 +125,13 @@ void Objet::draw(SDL_Surface* gpScreen) {
     }
     
     if (suivant != NULL) 
-        if (((Objet*)suivant)->vie == 0) enleve(suivant);
+        if (((Objet*)suivant)->vie == 0) delete (Objet*)enleve(suivant);
     if (suivant != NULL) ((Objet*)suivant)->draw(gpScreen);
 }
 
 void Objet::revie() {
     if (suivant != NULL) 
-        if (((Objet*)suivant)->persist == 0) enleve(suivant);
+        if (((Objet*)suivant)->persist == 0) delete (Objet*)enleve(suivant);
     if (suivant != NULL) ((Objet*)suivant)->revie();
 }
 

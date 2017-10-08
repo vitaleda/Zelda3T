@@ -14,7 +14,10 @@ Listable::Listable() : suivant(0), id(0) {
 }
 
 Listable::~Listable() {
-    delete suivant;
+    if (suivant) {
+        delete suivant;
+    }
+    suivant = 0;
 }
 
 int Listable::size() {
@@ -26,23 +29,26 @@ void Listable::ajout(Listable* l) {
     if (suivant == 0) {
         suivant = l;
         suivant->id = id + 1;
-        delete suivant->suivant; // au cas où on a donné une liste au lieu d'un élément
     }
     else suivant->ajout(l);
 }
 
-void Listable::enleve(Listable* l) {
-    if (suivant == 0) return;
+Listable* Listable::enleve(Listable* l) {
+    if (suivant == 0) return 0;
     if (l == suivant) {
         Listable* tmp = suivant->suivant;
         suivant->suivant = 0; //pour éviter suppressions récursives
-        delete suivant;
+        Listable* ret = suivant;
         suivant = tmp;
+        return ret;
     }
-    else suivant->enleve(l);
+    return suivant->enleve(l);
 }
 
 void Listable::setSuivant(Listable* l) {
+    if (suivant) {
+       delete suivant;
+    }
     suivant = l;
 }
 

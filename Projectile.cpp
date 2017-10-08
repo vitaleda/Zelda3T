@@ -27,7 +27,14 @@ chmax(0) {
 }
 
 Projectile::~Projectile() {
-    SDL_FreeSurface(image);
+    if (image != NULL) {
+        SDL_FreeSurface(image);
+    }
+    if (suivant != NULL) {
+        Projectile* proj_ = (Projectile*)suivant;
+        suivant = NULL;
+        delete proj_;
+    }
 }
 
 void Projectile::draw(SDL_Surface* gpScreen) {
@@ -163,7 +170,7 @@ void Projectile::draw(SDL_Surface* gpScreen) {
     
     
     
-    if (suivant != NULL) if (((Projectile*)suivant)->vie == 0) enleve(suivant);
+    if (suivant != NULL) if (((Projectile*)suivant)->vie == 0) delete (Projectile*)enleve(suivant);
     if (suivant != NULL) ((Projectile*)suivant)->draw(gpScreen);
 }
 

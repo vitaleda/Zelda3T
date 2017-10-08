@@ -47,21 +47,55 @@ Jeu::~Jeu() {
     delete gpEnnemi;
     delete gpPiege;
     delete gpPnj;
+    SDL_FreeSurface(imageObjets);
 }
 
 void Jeu::init(int save) {
     zone=79; zoneOld=-1;
+    if (gpProjectile != NULL) {
+        delete gpProjectile;
+    }
     gpProjectile = new Projectile(this, 0, N, 0, 0, 0);
+    if (gpObjet != NULL) {
+        delete gpObjet;
+    }
     gpObjet = new Objet(this, 0, 0, 0, 0);
+    if (gpSnipe != NULL) {
+        delete gpSnipe;
+    }
     gpSnipe = new Snipe(this, 0, 0, 0, 0, 0);
+    if (gpCaisse != NULL) {
+        delete gpCaisse;
+    }
     gpCaisse = new Caisse(this, 0, 0, 0);
+    if (gpEnnemi != NULL) {
+        delete gpEnnemi;
+    }
     gpEnnemi = new Ennemi(this, 0, 0, 0, true);
+    if (gpPiege != NULL) {
+        delete gpPiege;
+    }
     gpPiege = new Ennemi(this, 0, 0, 0, true);
+    if (gpPnj != NULL) {
+        delete gpPnj;
+    }
     gpPnj = new Pnj(this, 0, 0, 0, 0);
+    if (gpJoueur != NULL) {
+        delete gpJoueur;
+    }
     gpJoueur = new Joueur(this, save);
+    if (gpMonde != NULL) {
+        delete gpMonde;
+    }
     gpMonde = new Monde(this);
+    if (gpMenu != NULL) {
+        delete gpMenu;
+    }
     gpMenu = new Menu(this);
     //gpTexte = new Texte(this);
+    if (gpStatut != NULL) {
+        delete gpStatut;
+    }
     gpStatut = new Statut(this);
     //gpAudio->playMusic(zone);
     
@@ -587,7 +621,7 @@ bool Jeu::finTexte(int id) {
             pnj = gpPnj->getSuivant();
             while (pnj != NULL) {
                 if (pnj->getId() == 7) {
-                    gpPnj->enleve(pnj); ajoutePnj(53,32*16+8,30*16+5,126); break;}
+                    delete (Pnj*)gpPnj->enleve(pnj); ajoutePnj(53,32*16+8,30*16+5,126); break;}
                 pnj = pnj->getSuivant();
             }
             gpJoueur->setTroc(M_ROUE,gpJoueur->getTroc(M_ROUE)-1);
