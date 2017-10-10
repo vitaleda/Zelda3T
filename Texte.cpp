@@ -22,9 +22,9 @@
 Texte::Texte(Jeu* jeu) : gpJeu(jeu), vitesse(40), av(0), x(0), y(0), w(0), h(0),
 id(0), idsuiv(0), def(false), cadre(false), texte(""), buffer("") {
     lastAnimTime = SDL_GetTicks();
-    imageFont = IMG_Load("data/images/texte/font.png");
+    imageFont = gpJeu->loadImg("data/images/texte/font.png");
     SDL_SetColorKey(imageFont,SDL_SRCCOLORKEY,SDL_MapRGB(imageFont->format,0,0,255));
-    imageCoeur = IMG_Load("data/images/menu/coeur.png");
+    imageCoeur = gpJeu->loadImg("data/images/menu/coeur.png");
     SDL_SetColorKey(imageCoeur,SDL_SRCCOLORKEY,SDL_MapRGB(imageCoeur->format,0,0,255));
 }
 
@@ -91,7 +91,11 @@ void Texte::chercheText() {
         case 43 : texte = "..."; idsuiv=44; break;
         case 44 : texte = "The castle. To the east, don't tell me you've forgotten?"; break;
         case 45 : texte = "Hem Hem..."; idsuiv=46; break;
+#ifdef __PSP2__
+        case 46 : texte = "TUTORIAL : Press Circle near someone to talk with him, or near a sign to read it."; break;
+#else
         case 46 : texte = "TUTORIAL : Press Space near someone to talk with him, or near a sign to read it."; break;
+#endif
         case 47 : texte = "You didn't learn any song.";
             if (gpJeu->getJoueur()->hasMelodie(0)) {id=48; chercheText();break;}
             if (gpJeu->getJoueur()->hasMelodie(1)) {id=57; chercheText();break;}
@@ -648,7 +652,11 @@ void Texte::chercheText() {
         case 322 : texte = "At the dawn of cataclysm, shall the heroe find this stele. The Pendents of Courage, Wisdom and Power in his possession, his only chance to save the world will arise."; break;
         case 323 : texte = "..."; buffer="I'm afraid we'll have to forget about the ocarina for a moment...*If this stele says the truth, you have to gather the 3 pendents as soon as possible..."; idsuiv=324; break;
         case 324 : texte = "They are hidden in 3 temples, the nearest is a tower by the waterfalls, north of here... Take this map, it will help you find your way!"; break;
+#ifdef __PSP2__
+        case 325 : texte = "You got the map of Hyrule!**Press L outdoors to see it."; break;
+#else
         case 325 : texte = "You got the map of Hyrule!**Press P outdoors to see it."; break;
+#endif
         case 326 : 
             if (!gpJeu->getJoueur()->hasMedaillon(0)) {texte = "The first pendent is in a tower North of this forest. Leave the forest by the West and head North to arrive in the waterfalls area."; break;}
             if (!gpJeu->getJoueur()->hasMedaillon(1)) {texte = "The second pendent is in the temple in the middle of the Lake. You should rent a boat at the Mabe village..."; break;}
@@ -1153,7 +1161,11 @@ void Texte::chercheText() {
             if (gpJeu->getJoueur()->hasObjet(O_ENCYCL)) {id=593; chercheText();break;}
             texte = "Hello Link, do you remember me?"; idsuiv=590; break;
         case 590 : texte = "Monsters appeared in Hyrule today, so once again I'll try to list them all, and once again I count on your help."; idsuiv=591; break;
+#ifdef __PSP2__
+        case 591 : texte = "Pressing Up D-Pad, you can see the monsters already listed. You just have to kill a monster to add it."; idsuiv=592; break;
+#else
         case 591 : texte = "Pressing M, you can see the monsters already listed. You just have to kill a monster to add it."; idsuiv=592; break;
+#endif
         case 592 : 
             switch (gpJeu->getEpoque()) {
                 case T_PASSE : os<<"10 Gold Coins"; break;
@@ -1804,7 +1816,11 @@ void Texte::chercheText() {
         case 940 : texte = "            Second Quest - Level 2 :                                                                            Tower of Gem"; break;
         case 941 : texte = "          Second Quest - Final Level :                                                                        Final Destination"; break;
         
+#ifdef __PSP2__
+        case 942 : texte = "You found the map!!!**Press L to see the dungeon map."; break;
+#else
         case 942 : texte = "You found the map!!!**Press P to see the dungeon map."; break;
+#endif
         case 943 : texte = "You found the compass!!!**The Boss and chests are now indicated on the map."; break;
         case 944 : texte = "You found the Boss Key!!!**Use it to open his haunt."; break;
         case 945 : texte = "You found a little key.**Use it to unlock a door."; break;
@@ -1925,8 +1941,13 @@ void Texte::chercheText() {
         case 1031: texte = "So that's where the thief came from! *What are you waiting for? Go after him!"; break;
         case 1032: texte = "I feel forgotten... *Here I am, guarding a safety vault empty and wide open..."; break;
         case 1033: texte = "The thief is probably in this forest, you can't give up now!"; break;
+#ifdef __PSP2__
+        case 1034: texte = "TUTORIAL : Press Cross in front of a light object like a jar in order to lift it up. Press a second time to throw it."; break;
+        case 1035: texte = "TUTORIAL : Press Circle in front of a chest to open it. You can open a chest only if you are down it."; break;
+#else
         case 1034: texte = "TUTORIAL : Press C in front of a light object like a jar in order to lift it up. Press a second time to throw it."; break;
         case 1035: texte = "TUTORIAL : Press SPACE in front of a chest to open it. You can open a chest only if you are down it."; break;
+#endif
         case 1036: texte = "                 Hyrule Castle"; break;
         case 1037: texte = "This way leads to the prison cells, you have nothing to do there."; break;
         case 1038: texte = "This way leads to a very high safety zone. Even the Hero of Hyrule is not allowed to go in."; break;
@@ -2438,7 +2459,11 @@ void Texte::chercheText() {
         case 1364: texte = "But both of them perfectly knew that, from the bottom of hell, Ganon the immortal drawed his power from his"; buffer="first wish to the Triforce, and rounded up his army with a view to invade Hyrule."; idsuiv=1365; break;
         case 1365: texte = "Until the day when, after months spent watching out for an attack, an event came up and put an end to this endless waiting..."; break;
         case 1366: texte = "HELLOOO !!! *MY LORD LINK !!!"; break;
+#ifdef __PSP2__
+        case 1367: texte = "HELP : Press Select to consult the help."; break;
+#else
         case 1367: texte = "HELP : Press F1 to consult the help."; break;
+#endif
         case 1368: texte = "Come back when you'll have a wallet and we'll talk business."; break;
         case 1369: texte = "We heard sounds of battle, and nothing more..."; break;
         case 1370: texte = "What, by all heavens, can have happened?"; break;

@@ -121,6 +121,7 @@ class Jeu {
         void saveOldMap();
         void restoreOldMap();
         void descendWagon();
+        SDL_Surface* loadImg(const char* img);
     private :
         void testRamasse(int x, int y, int w, int h);
         bool coupeBuisson(int i, int j, int type);

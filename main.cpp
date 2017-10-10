@@ -18,6 +18,13 @@
 #include "Keyboard.h"
 #include "Generique.h"
 
+#ifdef __PSP2__
+#include <psp2/power.h>
+#include <psp2/kernel/processmgr.h>
+#include <psp2/io/fcntl.h>
+#include <psp2/io/stat.h>
+#endif
+
 SDL_Surface* init(bool* etire) {             // initialise SDL
     if(SDL_Init(SDL_INIT_VIDEO) == -1) {
         printf("Could not load SDL : %s\n", SDL_GetError());
@@ -26,14 +33,19 @@ SDL_Surface* init(bool* etire) {             // initialise SDL
     atexit(SDL_Quit);
     //if(SDL_InitSubSystem(SDL_INIT_AUDIO) == -1) *SOUND = false;
 
+#ifndef __PSP2__
     SDL_WM_SetCaption("Time to Triumph",NULL);
     SDL_Surface* icon = SDL_LoadBMP("data/images/logos/ocarina.ico");
     SDL_SetColorKey(icon,SDL_SRCCOLORKEY,SDL_MapRGB(icon->format,0,0,0));
     SDL_WM_SetIcon(icon,NULL);
+#endif
 
     SDL_ShowCursor(SDL_DISABLE);
 
 
+#ifdef __PSP2__
+    return SDL_SetVideoMode(640, 480, 16, SDL_HWSURFACE|SDL_DOUBLEBUF);
+#else
     SDL_Rect** modes;
     int gBpp = 0;
     
@@ -53,9 +65,14 @@ SDL_Surface* init(bool* etire) {             // initialise SDL
     } else {
         return SDL_SetVideoMode(320, 240, 32, SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_FULLSCREEN);
     }
+#endif
 }
 
 int main(int argc, char** argv) {
+#ifdef __PSP2__
+    sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_AUTO_SUSPEND);
+    scePowerSetArmClockFrequency(444);
+#endif
     if (argc && argv); //pour éviter un warning.....
     
     std::srand(std::time(NULL));
@@ -71,7 +88,16 @@ int main(int argc, char** argv) {
     bool etire = false;
     
     gpScreen = init(&etire);
+#ifdef __PSP2__
+    int sh = 544;
+    int sw = (float)gpScreen->w*((float)sh/(float)gpScreen->h);
+    int x = (960 - sw)/2;
+    SDL_SetVideoModeScaling(x, 0, sw, sh);
+
+    SDL_Surface* gpScreen2 = SDL_SetVideoMode(320, 240, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
+#else
     SDL_Surface* gpScreen2 = SDL_CreateRGBSurface(SDL_HWSURFACE, 320, 240, 32, 0, 0, 0, 0);
+#endif
     SDL_Surface* gpScreen3 = NULL;
     
     Audio* gpAudio = new Audio();

@@ -22,7 +22,7 @@
 Caisse::Caisse(Jeu* jeu, int type, int i, int j, int r, int revie) : gpJeu(jeu), id(type),
 pousseX(0), pousseY(0), vitesse(1), direction(N), reste(r), reviable(revie), rdep(r) {
     x=i; y=j; w=16; h=16; xdep=x; ydep=y;
-    image = IMG_Load("data/images/objet/caisse.png");
+    image = gpJeu->loadImg("data/images/objet/caisse.png");
     SDL_SetColorKey(image,SDL_SRCCOLORKEY,SDL_MapRGB(image->format,0,0,255));
     sx = ((type-1)%3)*w;
     sy = ((type-1)/3)*h;

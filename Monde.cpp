@@ -32,34 +32,34 @@ afiltre(0) {
     for (int i = 0; i < 7; i++) {
         std::ostringstream im;
         im << (i+1);
-        image[i] = IMG_Load(("data/images/motifs/image" + im.str() + ".png").c_str());
+        image[i] = gpJeu->loadImg(("data/images/motifs/image" + im.str() + ".png").c_str());
         SDL_SetColorKey(image[i],SDL_SRCCOLORKEY,SDL_MapRGB(image[i]->format,0,0,255));
     }
     
     imagetransit = SDL_CreateRGBSurface(SDL_HWSURFACE, 320, 240, 32, 0, 0, 0, 0);
     
-    imagelevel = IMG_Load("data/images/menu/level.png");
+    imagelevel = gpJeu->loadImg("data/images/menu/level.png");
     SDL_SetColorKey(imagelevel,SDL_SRCCOLORKEY,SDL_MapRGB(imagelevel->format,0,0,255));
     
-    imageSpe[0] = IMG_Load("data/images/motifs/fond.png");
-    imageSpe[1] = IMG_Load("data/images/motifs/fond2.png");
-    imageSpe[2] = IMG_Load("data/images/motifs/fond3.png");
-    imageSpe[3] = IMG_Load("data/images/motifs/eclair.png");
-    imageSpe[4] = IMG_Load("data/images/motifs/pluie1.png");
-    imageSpe[5] = IMG_Load("data/images/motifs/pluie2.png");
-    imageSpe[6] = IMG_Load("data/images/motifs/pluie3.png");
-    imageSpe[7] = IMG_Load("data/images/motifs/ciel.png");
-    imageSpe[9] = IMG_Load("data/images/motifs/foret.png");
-    imageSpe[10] = IMG_Load("data/images/motifs/foret2.png");
-    imageSpe[11] = IMG_Load("data/images/motifs/foret3.png");
-    imageSpe[12] = IMG_Load("data/images/motifs/neige1.png");
-    imageSpe[13] = IMG_Load("data/images/motifs/neige2.png");
-    imageSpe[14] = IMG_Load("data/images/motifs/neige3.png");
-    imageSpe[15] = IMG_Load("data/images/motifs/jurassic.png");
-    imageSpe[16] = IMG_Load("data/images/motifs/apocalypse.png");
+    imageSpe[0] = gpJeu->loadImg("data/images/motifs/fond.png");
+    imageSpe[1] = gpJeu->loadImg("data/images/motifs/fond2.png");
+    imageSpe[2] = gpJeu->loadImg("data/images/motifs/fond3.png");
+    imageSpe[3] = gpJeu->loadImg("data/images/motifs/eclair.png");
+    imageSpe[4] = gpJeu->loadImg("data/images/motifs/pluie1.png");
+    imageSpe[5] = gpJeu->loadImg("data/images/motifs/pluie2.png");
+    imageSpe[6] = gpJeu->loadImg("data/images/motifs/pluie3.png");
+    imageSpe[7] = gpJeu->loadImg("data/images/motifs/ciel.png");
+    imageSpe[9] = gpJeu->loadImg("data/images/motifs/foret.png");
+    imageSpe[10] = gpJeu->loadImg("data/images/motifs/foret2.png");
+    imageSpe[11] = gpJeu->loadImg("data/images/motifs/foret3.png");
+    imageSpe[12] = gpJeu->loadImg("data/images/motifs/neige1.png");
+    imageSpe[13] = gpJeu->loadImg("data/images/motifs/neige2.png");
+    imageSpe[14] = gpJeu->loadImg("data/images/motifs/neige3.png");
+    imageSpe[15] = gpJeu->loadImg("data/images/motifs/jurassic.png");
+    imageSpe[16] = gpJeu->loadImg("data/images/motifs/apocalypse.png");
     imageSpe[17] = SDL_CreateRGBSurface(SDL_HWSURFACE, 320, 240, 32, 0, 0, 0, 0);
     SDL_FillRect(imageSpe[17], NULL, SDL_MapRGB(imageSpe[17]->format, 0, 0, 255));
-    imageSpe[18] = IMG_Load("data/images/motifs/deesses.png");
+    imageSpe[18] = gpJeu->loadImg("data/images/motifs/deesses.png");
     
     SDL_SetAlpha(imageSpe[9], SDL_SRCALPHA, 128);
     SDL_SetAlpha(imageSpe[10], SDL_SRCALPHA, 128);
@@ -5453,7 +5453,11 @@ void Monde::chargeMap(int zone) {
             
     std::ostringstream oss;
     oss << zone;
+#ifdef __PSP2__
+    std::string result = "ux0:data/z3t/data/map/carte" + oss.str() + ".map";
+#else
     std::string result = "data/map/carte" + oss.str() + ".map";
+#endif
     std::ifstream file(result.c_str());
     
     file >> largeur;

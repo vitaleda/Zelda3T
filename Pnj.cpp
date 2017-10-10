@@ -23,7 +23,7 @@ special2(0) {
     if (id) {
         ostringstream im;
         im << id;
-        image = IMG_Load(("data/images/personnage/personnage" + im.str() + ".png").c_str());
+        image = gpJeu->loadImg(("data/images/personnage/personnage" + im.str() + ".png").c_str());
         SDL_SetColorKey(image,SDL_SRCCOLORKEY,SDL_MapRGB(image->format,0,0,255));
         x=i; y=j; saveEmpl(); animmax=1;
         init();
@@ -50,7 +50,7 @@ void Pnj::draw(SDL_Surface* gpScreen) {
         if (id == 76 && gpJeu->getJoueur()->hasObjet(O_TROC2)>4) {
             id = 77;
             SDL_FreeSurface(image);
-            image = IMG_Load("data/images/personnage/personnage77.png");
+            image = gpJeu->loadImg("data/images/personnage/personnage77.png");
             SDL_SetColorKey(image,SDL_SRCCOLORKEY,SDL_MapRGB(image->format,0,0,255));
         }
         

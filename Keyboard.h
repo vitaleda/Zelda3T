@@ -49,6 +49,8 @@ class Keyboard {
         int pollKey(SDL_Event event);
         void pollKeys(Uint8* keys);
         void toggleFullScreen();
+        int buttonPressed(int i);
+        int stickPosition(int stick, int direction);
         
         Jeu* gpJeu;
         Carte* gpCarte;
@@ -85,6 +87,9 @@ class Keyboard {
         SDL_Event event;
         Uint8* keys;
         
+#ifdef __PSP2__
+        SDL_Joystick* joystick;
+#endif
 };
 
 #endif  // Keyboard.h

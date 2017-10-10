@@ -16,14 +16,14 @@ Generique::Generique(Jeu* jeu) : gpJeu(jeu), anim(0) {
     imageFin = NULL;
     imageArbre = NULL;
     image = SDL_CreateRGBSurface(SDL_HWSURFACE, 320, 240, 32, 0, 0, 0, 0);
-    imageTitre = IMG_Load("data/images/logos/titre.png");
+    imageTitre = gpJeu->loadImg("data/images/logos/titre.png");
     SDL_SetColorKey(imageTitre,SDL_SRCCOLORKEY,SDL_MapRGB(imageTitre->format,0,0,255));
-    imageCurseur = IMG_Load("data/images/logos/curseur.png");
+    imageCurseur = gpJeu->loadImg("data/images/logos/curseur.png");
     SDL_SetColorKey(imageCurseur,SDL_SRCCOLORKEY,SDL_MapRGB(imageCurseur->format,0,0,255));
-    imageNiveau = IMG_Load("data/images/logos/niveau.png");
+    imageNiveau = gpJeu->loadImg("data/images/logos/niveau.png");
     SDL_SetColorKey(imageNiveau,SDL_SRCCOLORKEY,SDL_MapRGB(imageNiveau->format,0,0,255));
-    imageFee = IMG_Load("data/images/logos/fee.png");
-    imageCadre = IMG_Load("data/images/logos/cadres.png");
+    imageFee = gpJeu->loadImg("data/images/logos/fee.png");
+    imageCadre = gpJeu->loadImg("data/images/logos/cadres.png");
     imageFond1 = NULL;
     imageFond2 = NULL;
     for (int i = 0; i < 5; i++) imageIntro[i]=NULL;
@@ -44,7 +44,7 @@ Generique::~Generique() {
 }
 
 void Generique::drawFin(SDL_Surface* gpScreen) {
-    if (!imageFin) imageFin = IMG_Load("data/images/logos/fin.png");
+    if (!imageFin) imageFin = gpJeu->loadImg("data/images/logos/fin.png");
     SDL_Rect dst; dst.x = 0; dst.y = 0;
     SDL_BlitSurface(imageFin, NULL, gpScreen, &dst);
     gpJeu->getTexte()->draw(gpScreen);
@@ -52,14 +52,14 @@ void Generique::drawFin(SDL_Surface* gpScreen) {
 
 void Generique::initLogo() {
     SDL_Rect dst;
-    SDL_Surface* logo = IMG_Load("data/images/logos/logo.png");
+    SDL_Surface* logo = gpJeu->loadImg("data/images/logos/logo.png");
     dst.x = 0; dst.y = 0; SDL_BlitSurface(logo, NULL, image, &dst);
     SDL_FreeSurface(logo);
 }
 
 void Generique::initPresent() {
     SDL_Rect dst;
-    SDL_Surface* present = IMG_Load("data/images/motifs/present.png");
+    SDL_Surface* present = gpJeu->loadImg("data/images/motifs/present.png");
     dst.x = 0; dst.y = 0; SDL_BlitSurface(present, NULL, image, &dst);
     SDL_FreeSurface(present);
 }
@@ -71,24 +71,24 @@ void Generique::drawToPresent(SDL_Surface* gpScreen) {
 
 void Generique::initPasse() {
     SDL_Rect dst;
-    SDL_Surface* passe = IMG_Load("data/images/motifs/passe.png");
+    SDL_Surface* passe = gpJeu->loadImg("data/images/motifs/passe.png");
     dst.x = 0; dst.y = 0; SDL_BlitSurface(passe, NULL, image, &dst);
     SDL_FreeSurface(passe);
 }
 
 void Generique::initImageFin() {
     SDL_Rect dst;
-    SDL_Surface* fin = IMG_Load("data/images/motifs/fin.png");
+    SDL_Surface* fin = gpJeu->loadImg("data/images/motifs/fin.png");
     dst.x = 0; dst.y = 0; SDL_BlitSurface(fin, NULL, image, &dst);
     SDL_FreeSurface(fin);
 }
 
 void Generique::initTitre() {
     SDL_Rect dst;
-    SDL_Surface* fond = IMG_Load("data/images/logos/fond.png");
+    SDL_Surface* fond = gpJeu->loadImg("data/images/logos/fond.png");
     dst.x = 0; dst.y = 0; SDL_BlitSurface(fond, NULL, image, &dst);
     SDL_FreeSurface(fond);
-    SDL_Surface* logo = IMG_Load("data/images/logos/titre.png");
+    SDL_Surface* logo = gpJeu->loadImg("data/images/logos/titre.png");
     SDL_SetColorKey(logo,SDL_SRCCOLORKEY,SDL_MapRGB(logo->format,0,0,255));
     logo = SDL_DisplayFormat(logo);
     dst.x = 76; dst.y = 53; SDL_BlitSurface(logo, NULL, image, &dst);
@@ -142,10 +142,10 @@ void Generique::initSelection() {
     gpJeu->affiche(image, "RECORDS", 215, 200);
     
     //stats :
-    SDL_Surface* imageStat = IMG_Load("data/images/statut/statut.png");
+    SDL_Surface* imageStat = gpJeu->loadImg("data/images/statut/statut.png");
     SDL_SetColorKey(imageStat,SDL_SRCCOLORKEY,SDL_MapRGB(imageStat->format,0,0,255));
-    SDL_Surface* inventaire = IMG_Load("data/images/statut/inventaire.png");
-    SDL_Surface* objets = IMG_Load("data/images/statut/objets.png");
+    SDL_Surface* inventaire = gpJeu->loadImg("data/images/statut/inventaire.png");
+    SDL_Surface* objets = gpJeu->loadImg("data/images/statut/objets.png");
     
     for (int i = 0; i < 3; i++) {
         Joueur* gpJoueur = new Joueur(gpJeu,i+1);
@@ -346,7 +346,7 @@ void Generique::initRecord() {
     gpJeu->affiche(image, "RETURN", 63, 200);
     gpJeu->affiche(image, "ERASE", 215, 200);
     
-    SDL_Surface* objets = IMG_Load("data/images/statut/objets.png");
+    SDL_Surface* objets = gpJeu->loadImg("data/images/statut/objets.png");
     
     //triforce
     src.y=0; src.w=17; src.h=16;
@@ -391,15 +391,15 @@ void Generique::initCharger() {
 
 void Generique::initIntro() {
     if (imageFond1==NULL) {
-        imageFond1 = IMG_Load("data/images/logos/fond1.png");
+        imageFond1 = gpJeu->loadImg("data/images/logos/fond1.png");
         SDL_SetColorKey(imageFond1,SDL_SRCCOLORKEY,SDL_MapRGB(imageFond1->format,0,0,255));}
-    if (imageFond2==NULL) imageFond2 = IMG_Load("data/images/logos/fond2.png");
+    if (imageFond2==NULL) imageFond2 = gpJeu->loadImg("data/images/logos/fond2.png");
     
     ostringstream oss;
     for (int i = 0; i < 5; i++) {
         if (imageIntro[i]==NULL) {
             oss.str(""); oss << (i+1);
-            imageIntro[i] = IMG_Load(("data/images/logos/intro" + oss.str() + ".png").c_str());
+            imageIntro[i] = gpJeu->loadImg(("data/images/logos/intro" + oss.str() + ".png").c_str());
         }
     }
     
@@ -409,7 +409,7 @@ void Generique::initIntro() {
 
 void Generique::initNuit() {
     SDL_Rect dst;
-    SDL_Surface* fond = IMG_Load("data/images/logos/nuit.png");
+    SDL_Surface* fond = gpJeu->loadImg("data/images/logos/nuit.png");
     dst.x = 0; dst.y = 0; SDL_BlitSurface(fond, NULL, image, &dst);
     SDL_FreeSurface(fond);
     //SDL_FillRect(image, NULL, SDL_MapRGB(image->format, 0, 0, 0));
@@ -453,52 +453,115 @@ void Generique::initAide1() {
     
     cadre(16,192+8,288,32);
     
+#ifdef __PSP2__
+    gpJeu->affiche(image, "Return to the game: Cross - Next: Right", 24, 208);
+#else
     gpJeu->affiche(image, "Return to the game: Enter - Next: Right", 24, 208);
+#endif
     
     int ligne = 64;
     Joueur* gpJoueur = gpJeu->getJoueur();
     
+#ifdef __PSP2__
+    gpJeu->affiche(image, "Read / Open / Speak : Circle", 24, ligne); ligne+=16;
+    gpJeu->affiche(image, "Confirm / Pass text: Cross", 24, ligne); ligne+=16;
+    gpJeu->affiche(image, "Move Link: Left stick", 24, ligne); ligne+=16;
+#else
     gpJeu->affiche(image, "Read / Open / Speak : Space", 24, ligne); ligne+=16;
     gpJeu->affiche(image, "Confirm / Pass text: Enter", 24, ligne); ligne+=16;
     gpJeu->affiche(image, "Move Link: Arrows", 24, ligne); ligne+=16;
+#endif
     if (gpJoueur->hasObjet(O_BOTTES)) {
+#ifdef __PSP2__
+        gpJeu->affiche(image, "Run: Hold R", 24, ligne); 
+#else
         gpJeu->affiche(image, "Run: Shift hold or Caps lock", 24, ligne); 
+#endif
         ligne+=16;}
     if (gpJoueur->getEpee()) {
+#ifdef __PSP2__
+        gpJeu->affiche(image, "Use sword: Square", 24, ligne); ligne+=16;
+        gpJeu->affiche(image, "Spin attack: Hold square then dropped", 24, ligne); 
+#else
         gpJeu->affiche(image, "Use sword: Z or W", 24, ligne); ligne+=16;
         gpJeu->affiche(image, "Spin attack: Z or W hold then dropped", 24, ligne); 
+#endif
         ligne+=16;}
+#ifdef __PSP2__
+    gpJeu->affiche(image, "Item selection: Right D-Pad", 24, ligne); ligne+=16;
+#else
     gpJeu->affiche(image, "Item selection: Enter", 24, ligne); ligne+=16;
+#endif
     if (ligne < 176)
+#ifdef __PSP2__
+    gpJeu->affiche(image, "Use selected object: Triangle", 24, ligne); ligne+=16;
+#else
     gpJeu->affiche(image, "Use selected object: X", 24, ligne); ligne+=16;
+#endif
     if (gpJoueur->hasObjet(O_GANTS)) {
+#ifdef __PSP2__
+        if (ligne < 176) gpJeu->affiche(image, "Carry: Cross", 24, ligne); 
+#else
         if (ligne < 176) gpJeu->affiche(image, "Carry: C", 24, ligne); 
+#endif
         ligne+=16;}
     if (gpJoueur->hasObjet(O_CARTE)) {
         if (ligne < 176) 
+#ifdef __PSP2__
+            gpJeu->affiche(image, "See the map: L (outside or dungeons)", 24, ligne);
+#else
             gpJeu->affiche(image, "See the map: P (outside or dungeons)", 24, ligne);
+#endif
     } else 
         if (ligne < 176) 
+#ifdef __PSP2__
+            gpJeu->affiche(image, "See the map: L (in dungeons)", 24, ligne);
+#else
             gpJeu->affiche(image, "See the map: P (in dungeons)", 24, ligne);
+#endif
     ligne+=16;
     if (gpJoueur->hasObjet(O_ENCYCL)) {
+#ifdef __PSP2__
+        if (ligne < 176) gpJeu->affiche(image, "See defeated monsters: Up D-Pad", 24, ligne); 
+#else
         if (ligne < 176) gpJeu->affiche(image, "See defeated monsters: M", 24, ligne); 
+#endif
         ligne+=16;}
     if (gpJoueur->hasObjet(O_POISSONS)) {
+#ifdef __PSP2__
+        if (ligne < 176) gpJeu->affiche(image, "See fishes : Down D-Pad", 24, ligne); 
+#else
         if (ligne < 176) gpJeu->affiche(image, "See fishes : L", 24, ligne); 
+#endif
         ligne+=16;}
     if (gpJoueur->hasObjet(O_SAC_TROC)) {
+#ifdef __PSP2__
+        if (ligne < 176) gpJeu->affiche(image, "See barter items : Left D-Pad", 24, ligne); 
+#else
         if (ligne < 176) gpJeu->affiche(image, "See barter items : I", 24, ligne); 
+#endif
         ligne+=16;}
     if (gpJoueur->hasObjet(O_MASQUE)) {
+#ifdef __PSP2__
+        if (ligne < 176) gpJeu->affiche(image, "Oni Link transformation : L + R", 24, ligne); 
+#else
         if (ligne < 176) gpJeu->affiche(image, "Oni Link transformation : O", 24, ligne); 
+#endif
         ligne+=16;}
     if (ligne < 176)
+#ifdef __PSP2__
+    gpJeu->affiche(image, "Look around: Right stick", 24, ligne); ligne+=16;
+#else
     gpJeu->affiche(image, "Look around: Ctrl and direction", 24, ligne); ligne+=16;
     if (ligne < 176)
     gpJeu->affiche(image, "Enlarge / Shrink: Ctrl and Enter", 24, ligne); ligne+=16;
+#endif
     if (ligne < 176)
+#ifdef __PSP2__
+    gpJeu->affiche(image, "Save / Quit: Start", 24, ligne); ligne+=16;
+#else
     gpJeu->affiche(image, "Save / Quit: Esc", 24, ligne); ligne+=16;
+#endif
     
     if (ligne >= 288) gpJeu->affiche(image, "HELP 1/3", 40, 16);
     else gpJeu->affiche(image, "HELP 1/2", 40, 16);
@@ -548,50 +611,108 @@ void Generique::initAide2() {
     if (gpJoueur->hasObjet(O_BOTTES)) ligne+=16;
     if (gpJoueur->getEpee()) ligne+=32;
     if (ligne >= 64) 
+#ifdef __PSP2__
+    gpJeu->affiche(image, "Use selected object: Triangle", 24, ligne); ligne+=16;
+#else
     gpJeu->affiche(image, "Use selected object: X", 24, ligne); ligne+=16;
+#endif
     if (gpJoueur->hasObjet(O_GANTS)) {
-        if (ligne >= 64) gpJeu->affiche(image, "Carry : C", 24, ligne); 
+#ifdef __PSP2__
+        if (ligne >= 64) gpJeu->affiche(image, "Carry: Cross", 24, ligne); 
+#else
+        if (ligne >= 64) gpJeu->affiche(image, "Carry: C", 24, ligne); 
+#endif
         ligne+=16;}
     if (gpJoueur->hasObjet(O_CARTE)) {
         if (ligne >= 64) 
+#ifdef __PSP2__
+            gpJeu->affiche(image, "See the map: L (outside or dungeons)", 24, ligne);
+#else
             gpJeu->affiche(image, "See the map: P (outside or dungeons)", 24, ligne);
+#endif
     } else 
         if (ligne >= 64) 
+#ifdef __PSP2__
+            gpJeu->affiche(image, "See the map: L (in dungeons)", 24, ligne);
+#else
             gpJeu->affiche(image, "See the map: P (in dungeons)", 24, ligne);
+#endif
     ligne+=16;
     if (gpJoueur->hasObjet(O_ENCYCL)) {
+#ifdef __PSP2__
+        if (ligne >= 64) gpJeu->affiche(image, "See defeated monsters: Up D-Pad", 24, ligne); 
+#else
         if (ligne >= 64) gpJeu->affiche(image, "See defeated monsters: M", 24, ligne); 
+#endif
         ligne+=16;}
     if (gpJoueur->hasObjet(O_POISSONS)) {
+#ifdef __PSP2__
+        if (ligne >= 64) gpJeu->affiche(image, "See fishes : Down D-Pad", 24, ligne); 
+#else
         if (ligne >= 64) gpJeu->affiche(image, "See fishes : L", 24, ligne); 
+#endif
         ligne+=16;}
     if (gpJoueur->hasObjet(O_SAC_TROC)) {
+#ifdef __PSP2__
+        if (ligne >= 64) gpJeu->affiche(image, "See barter items : Left D-Pad", 24, ligne); 
+#else
         if (ligne >= 64) gpJeu->affiche(image, "See barter items : I", 24, ligne); 
+#endif
         ligne+=16;}
     if (gpJoueur->hasObjet(O_MASQUE)) {
+#ifdef __PSP2__
+        if (ligne >= 64) gpJeu->affiche(image, "Oni Link transformation : L + R", 24, ligne); 
+#else
         if (ligne >= 64) gpJeu->affiche(image, "Oni Link transformation : O", 24, ligne); 
+#endif
         ligne+=16;}
     if (ligne >= 176) {
         gpJeu->affiche(image, "HELP 2/3", 40, 16); 
+#ifdef __PSP2__
+        gpJeu->affiche(image, "Return to the game: Cross - Next: Right", 24, 208);
+#else
         gpJeu->affiche(image, "Return to the game: Enter - Next: Right", 24, 208);
+#endif
         return;}
     if (ligne >= 64) 
+#ifdef __PSP2__
+    gpJeu->affiche(image, "Look around: Right stick", 24, ligne); ligne+=16;
+#else
     gpJeu->affiche(image, "Look around: Ctrl and direction", 24, ligne); ligne+=16;
+#endif
     if (ligne >= 176) {
         gpJeu->affiche(image, "HELP 2/3", 40, 16); 
+#ifdef __PSP2__
+        gpJeu->affiche(image, "Return to the game: Cross - Next: Right", 24, 208);
+#else
         gpJeu->affiche(image, "Return to the game: Enter - Next: Right", 24, 208);
+#endif
         return;}
+#ifndef __PSP2__
     if (ligne >= 64) 
     gpJeu->affiche(image, "Enlarge / Shrink: Ctrl and Enter", 24, ligne); ligne+=16;
+#endif
     if (ligne >= 176) {
         gpJeu->affiche(image, "HELP 2/3", 40, 16); 
+#ifdef __PSP2__
+        gpJeu->affiche(image, "Return to the game: Cross - Next: Right", 24, 208);
+#else
         gpJeu->affiche(image, "Return to the game: Enter - Next: Right", 24, 208);
+#endif
         return;}
     if (ligne >= 64) 
+#ifdef __PSP2__
+    gpJeu->affiche(image, "Save / Quit: Start", 24, ligne); ligne+=16;
+#else
     gpJeu->affiche(image, "Save / Quit: Esc", 24, ligne); ligne+=16;
+#endif
     
     gpJeu->affiche(image, "HELP 2/2", 40, 16);
+#ifdef __PSP2__
+    gpJeu->affiche(image, "Return to the game: Cross - Previous: Left", 24, 208);
+#else
     gpJeu->affiche(image, "Return to the game: Enter - Previous: Left", 24, 208);
+#endif
 }
 
 bool Generique::initAide3() {
@@ -633,7 +754,11 @@ bool Generique::initAide3() {
     
     gpJeu->affiche(image, "HELP 3/3", 40, 16);
     
+#ifdef __PSP2__
+    gpJeu->affiche(image, "Return to the game: Cross - Previous: Left", 24, 208);
+#else
     gpJeu->affiche(image, "Return to the game: Enter - Previous: Left", 24, 208);
+#endif
     
     int ligne = 64-112*2;
     Joueur* gpJoueur = gpJeu->getJoueur();
@@ -649,11 +774,19 @@ bool Generique::initAide3() {
     if (gpJoueur->hasObjet(O_SAC_TROC)) ligne+=16;
     if (gpJoueur->hasObjet(O_MASQUE)) ligne+=16;
     if (ligne >= 64) 
+#ifdef __PSP2__
+    gpJeu->affiche(image, "Look around: Right stick", 24, ligne); ligne+=16;
+#else
     gpJeu->affiche(image, "Look around: Ctrl and direction", 24, ligne); ligne+=16;
     if (ligne >= 64) 
     gpJeu->affiche(image, "Enlarge / Shrink: Ctrl and Enter", 24, ligne); ligne+=16;
+#endif
     if (ligne >= 64) 
+#ifdef __PSP2__
+        gpJeu->affiche(image, "Save / Quit: Start", 24, ligne);
+#else
         gpJeu->affiche(image, "Save / Quit: Esc", 24, ligne);
+#endif
     else {
         initAide2();
         return false;
@@ -666,7 +799,7 @@ void Generique::initTroc() {
     SDL_Rect src; src.w = 16; src.h = 16;
     SDL_Rect dst;
     
-    SDL_Surface* imageCadreTroc = IMG_Load("data/images/menu/cadrestroc.png");
+    SDL_Surface* imageCadreTroc = gpJeu->loadImg("data/images/menu/cadrestroc.png");
     
     src.x = 16; src.y = 16;
     for (int j = 0; j < 240; j+=16)
@@ -908,7 +1041,7 @@ void Generique::cadre(int x, int y, int w, int h) {
 
 void Generique::initScore() {
     SDL_FreeSurface(imageArbre);
-    imageArbre = IMG_Load("data/images/logos/arbre.png");
+    imageArbre = gpJeu->loadImg("data/images/logos/arbre.png");
     image = SDL_CreateRGBSurface(SDL_HWSURFACE, 320, 240, 32, 0, 0, 0, 0);
     
     SDL_Rect dst; 

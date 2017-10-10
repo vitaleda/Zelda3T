@@ -16,9 +16,16 @@
 
 #include "Audio.h"
 
+#ifdef __PSP2__
+#include <sys/stat.h>
+#endif
+
 Audio::Audio() : musiqueId(0), specialId(0) {
     SOUND = true;
     music = NULL;
+#ifdef __PSP2__
+    mem = NULL;
+#endif
     
     if(SDL_InitSubSystem(SDL_INIT_AUDIO) == -1) SOUND = false;
     
@@ -52,50 +59,50 @@ void Audio::setVolson(int volson) {
 void Audio::loadSounds() {
     sons = new Mix_Chunk*[44];
 
-    sons[0] = Mix_LoadWAV("data/sound/text.ogg"); // lettres
-    sons[1] = Mix_LoadWAV("data/sound/menu1.ogg"); // menu 1
-    sons[2] = Mix_LoadWAV("data/sound/menu2.ogg"); // menu 2
-    sons[3] = Mix_LoadWAV("data/sound/menu3.ogg"); // menu 3
-    sons[4] = Mix_LoadWAV("data/sound/menu4.ogg"); // menu 4
-    sons[5] = Mix_LoadWAV("data/sound/timewarp.ogg"); // time retour
-    sons[6] = Mix_LoadWAV("data/sound/tombe.ogg"); // tombe (ennemi)
-    sons[7] = Mix_LoadWAV("data/sound/hitenemy.ogg"); //shot 1
-    sons[8] = Mix_LoadWAV("data/sound/killenemy.ogg"); // shot 2
-    sons[9] = Mix_LoadWAV("data/sound/surprise.ogg"); // surprise
-    sons[10] = Mix_LoadWAV("data/sound/monte.ogg"); // monte
-    sons[11] = Mix_LoadWAV("data/sound/descend.ogg"); // descend
-    sons[12] = Mix_LoadWAV("data/sound/chute.ogg"); // chute
-    sons[13] = Mix_LoadWAV("data/sound/item.ogg"); // item
-    sons[14] = Mix_LoadWAV("data/sound/rupee.ogg"); // rubis
-    sons[15] = Mix_LoadWAV("data/sound/heart.ogg"); // coeur
-    sons[16] = Mix_LoadWAV("data/sound/bomb.ogg"); // bombe
-    sons[17] = Mix_LoadWAV("data/sound/textnext.ogg"); // suite texte
-    sons[18] = Mix_LoadWAV("data/sound/textend.ogg"); // fin texte
-    sons[19] = Mix_LoadWAV("data/sound/happy.ogg"); // trouve objet
-    sons[20] = Mix_LoadWAV("data/sound/door.ogg"); // ouvre porte
-    sons[21] = Mix_LoadWAV("data/sound/pics.ogg"); // pics contre mur
-    sons[22] = Mix_LoadWAV("data/sound/sword.ogg"); // Epée
-    sons[23] = Mix_LoadWAV("data/sound/SwordCharging.ogg"); // chargée
-    sons[24] = Mix_LoadWAV("data/sound/Sword360.ogg"); // spin
-    sons[25] = Mix_LoadWAV("data/sound/shoot.ogg"); // flèche
-    sons[26] = Mix_LoadWAV("data/sound/hookshot.ogg"); // grappin
-    sons[27] = Mix_LoadWAV("data/sound/stamp.ogg"); // pose bombe
-    sons[28] = Mix_LoadWAV("data/sound/magic.ogg"); // magie
-    sons[29] = Mix_LoadWAV("data/sound/burn.ogg"); // brËšle
-    sons[30] = Mix_LoadWAV("data/sound/hammer.ogg"); // marteau
-    sons[31] = Mix_LoadWAV("data/sound/plouf.ogg"); // plouf
-    sons[32] = Mix_LoadWAV("data/sound/danger.ogg"); // danger
-    sons[33] = Mix_LoadWAV("data/sound/hurt.ogg"); // link se blesse
-    sons[34] = Mix_LoadWAV("data/sound/porte.ogg"); // porte objet
-    sons[35] = Mix_LoadWAV("data/sound/lance.ogg"); // lance objet
-    sons[36] = Mix_LoadWAV("data/sound/casse.ogg"); // casse objet
-    sons[37] = Mix_LoadWAV("data/sound/charge.ogg"); // charge magie
-    sons[38] = Mix_LoadWAV("data/sound/buisson.ogg"); // coupe buisson
-    sons[39] = Mix_LoadWAV("data/sound/pousse.ogg"); // pousse caisse
-	sons[40] = Mix_LoadWAV("data/sound/envol.ogg"); // chant envol
-    sons[41] = Mix_LoadWAV("data/sound/inverse.ogg"); // hymne vide
-    sons[42] = Mix_LoadWAV("data/sound/accelere.ogg"); // chant esprit
-    sons[43] = Mix_LoadWAV("data/sound/splash.ogg"); // ...
+    sons[0] = getSound("text"); // lettres
+    sons[1] = getSound("menu1"); // menu 1
+    sons[2] = getSound("menu2"); // menu 2
+    sons[3] = getSound("menu3"); // menu 3
+    sons[4] = getSound("menu4"); // menu 4
+    sons[5] = getSound("timewarp"); // time retour
+    sons[6] = getSound("tombe"); // tombe (ennemi)
+    sons[7] = getSound("hitenemy"); //shot 1
+    sons[8] = getSound("killenemy"); // shot 2
+    sons[9] = getSound("surprise"); // surprise
+    sons[10] = getSound("monte"); // monte
+    sons[11] = getSound("descend"); // descend
+    sons[12] = getSound("chute"); // chute
+    sons[13] = getSound("item"); // item
+    sons[14] = getSound("rupee"); // rubis
+    sons[15] = getSound("heart"); // coeur
+    sons[16] = getSound("bomb"); // bombe
+    sons[17] = getSound("textnext"); // suite texte
+    sons[18] = getSound("textend"); // fin texte
+    sons[19] = getSound("happy"); // trouve objet
+    sons[20] = getSound("door"); // ouvre porte
+    sons[21] = getSound("pics"); // pics contre mur
+    sons[22] = getSound("sword"); // Epée
+    sons[23] = getSound("SwordCharging"); // chargée
+    sons[24] = getSound("Sword360"); // spin
+    sons[25] = getSound("shoot"); // flèche
+    sons[26] = getSound("hookshot"); // grappin
+    sons[27] = getSound("stamp"); // pose bombe
+    sons[28] = getSound("magic"); // magie
+    sons[29] = getSound("burn"); // brËšle
+    sons[30] = getSound("hammer"); // marteau
+    sons[31] = getSound("plouf"); // plouf
+    sons[32] = getSound("danger"); // danger
+    sons[33] = getSound("hurt"); // link se blesse
+    sons[34] = getSound("porte"); // porte objet
+    sons[35] = getSound("lance"); // lance objet
+    sons[36] = getSound("casse"); // casse objet
+    sons[37] = getSound("charge"); // charge magie
+    sons[38] = getSound("buisson"); // coupe buisson
+    sons[39] = getSound("pousse"); // pousse caisse
+	sons[40] = getSound("envol"); // chant envol
+    sons[41] = getSound("inverse"); // hymne vide
+    sons[42] = getSound("accelere"); // chant esprit
+    sons[43] = getSound("splash"); // ...
 }
 
 void Audio::freeSounds() {
@@ -103,6 +110,38 @@ void Audio::freeSounds() {
         for (int i = 0; i < 44; i++) Mix_FreeChunk(sons[i]);
         delete[] sons;
     }
+}
+
+Mix_Chunk* Audio::getSound(const char* son) {
+    char fSon[512];
+#ifdef __PSP2__
+    snprintf(fSon, sizeof(fSon), "%s/%s.ogg", "ux0:data/z3t/data/sound", son);
+#else
+    snprintf(fSon, sizeof(fSon), "%s/%s.ogg", "data/sound", son);
+#endif
+    return Mix_LoadWAV(fSon);
+}
+
+Mix_Music* Audio::getMusic(const char* zik) {
+    char fZik[512];
+#ifdef __PSP2__
+    struct stat info;
+    snprintf(fZik, sizeof(fZik), "%s/%s.ogg", "ux0:data/z3t/data/music", zik);
+    stat(fZik, &info);
+    if (f != NULL) {
+        fclose(f);
+    }
+    if (mem != NULL) {
+        free(mem);
+    }
+    f = fopen(fZik, "rb");
+    mem = (char*)malloc(info.st_size);
+    fread(mem, 1, info.st_size, f);
+    return Mix_LoadMUS_RW(SDL_RWFromMem(mem, info.st_size));
+#else
+    snprintf(fZik, sizeof(fZik), "%s/%s", "data/music", zik);
+    return Mix_LoadMUS(fZik);
+#endif
 }
 
 void Audio::playSound(int id, int chl) {
@@ -153,74 +192,74 @@ void Audio::replayMusic() {
 
 Mix_Music* Audio::choixMusique(int id) {
     switch (id) {
-	case 1 : case 2 : case 7 : return Mix_LoadMUS("data/music/PlaineP.mid");
-        case 3 : return Mix_LoadMUS("data/music/VilleCP.mid");
-        case 4 : return Mix_LoadMUS("data/music/TerresS.mid");
-        case 6 : return Mix_LoadMUS("data/music/BoisPerdus.mid");
-        case 8 : return Mix_LoadMUS("data/music/CimetiereP.mid");
-        case 10 : return Mix_LoadMUS("data/music/VillageMP.mid");
-        case 11 : return Mix_LoadMUS("data/music/LacP.mid");
-        case 12 : return Mix_LoadMUS("data/music/DesertP.mid");
-        case 13 : return Mix_LoadMUS("data/music/Cocorico.mid");
-        case 15 : return Mix_LoadMUS("data/music/MontP.mid");
-        case 16 : return Mix_LoadMUS("data/music/Foret.mid");
-        case 17 : return Mix_LoadMUS("data/music/Plaine.mid");
-        case 18 : return Mix_LoadMUS("data/music/Cite.mid");
-        case 19 : return Mix_LoadMUS("data/music/Chateau.mid");
-        case 21 : return Mix_LoadMUS("data/music/Lanelle.mid");
-        case 23 : return Mix_LoadMUS("data/music/Cimetiere.mid");
-        case 25 : return Mix_LoadMUS("data/music/VillageM.mid");
-        case 26 : return Mix_LoadMUS("data/music/Lac.mid");
-        case 27 : return Mix_LoadMUS("data/music/Desert.mid");
-        case 28 : return Mix_LoadMUS("data/music/VillageO.mid");
-        case 30 : return Mix_LoadMUS("data/music/Mont.mid");
+	case 1 : case 2 : case 7 : return getMusic("PlaineP");
+        case 3 : return getMusic("VilleCP");
+        case 4 : return getMusic("TerresS");
+        case 6 : return getMusic("BoisPerdus");
+        case 8 : return getMusic("CimetiereP");
+        case 10 : return getMusic("VillageMP");
+        case 11 : return getMusic("LacP");
+        case 12 : return getMusic("DesertP");
+        case 13 : return getMusic("Cocorico");
+        case 15 : return getMusic("MontP");
+        case 16 : return getMusic("Foret");
+        case 17 : return getMusic("Plaine");
+        case 18 : return getMusic("Cite");
+        case 19 : return getMusic("Chateau");
+        case 21 : return getMusic("Lanelle");
+        case 23 : return getMusic("Cimetiere");
+        case 25 : return getMusic("VillageM");
+        case 26 : return getMusic("Lac");
+        case 27 : return getMusic("Desert");
+        case 28 : return getMusic("VillageO");
+        case 30 : return getMusic("Mont");
         case 31 : case 32 : case 34 : case 35 :
-            return Mix_LoadMUS("data/music/Ombre.mid");
-        case 33 : return Mix_LoadMUS("data/music/VilleF.mid");
-        case 36 : return Mix_LoadMUS("data/music/BoisPerdusF.mid");
-        case 37 : return Mix_LoadMUS("data/music/Cascades.mid");
-        case 38 : return Mix_LoadMUS("data/music/CimetiereF.mid");
-        case 40 : return Mix_LoadMUS("data/music/VillageMF.mid");
-        case 41 : return Mix_LoadMUS("data/music/LacF.mid");
-        case 42 : return Mix_LoadMUS("data/music/DesertF.mid");
-        case 43 : return Mix_LoadMUS("data/music/VillageOF.mid");
-        case 45 : return Mix_LoadMUS("data/music/MontF.mid");
-        case 46 : return Mix_LoadMUS("data/music/Courage.mid");
-        case 47 : return Mix_LoadMUS("data/music/Sagesse.mid");
-        case 48 : return Mix_LoadMUS("data/music/Force.mid");
-        case 49 : return Mix_LoadMUS("data/music/Abysses.mid");
-        case 50 : return Mix_LoadMUS("data/music/PyramideF.mid");
-        case 51 : return Mix_LoadMUS("data/music/PyramideP.mid");
-        case 52 : return Mix_LoadMUS("data/music/Ordinn.mid");
-        case 53 : return Mix_LoadMUS("data/music/Air.mid");
-        case 54 : return Mix_LoadMUS("data/music/Glace.mid");
-        case 55 : return Mix_LoadMUS("data/music/Feu.mid");
-        case 56 : return Mix_LoadMUS("data/music/Titre.mid");
-        case 57 : return Mix_LoadMUS("data/music/DFinal.mid");
-        case 58 : return Mix_LoadMUS("data/music/Casino.mid");
-        case 59 : return Mix_LoadMUS("data/music/Gemme.mid");
-        case 60 : return Mix_LoadMUS("data/music/DestinationF.mid");
-        case 61 : return Mix_LoadMUS("data/music/Cave.mid");
-        case 79 : return Mix_LoadMUS("data/music/Home.mid");
-        case 80 : return Mix_LoadMUS("data/music/Bar.mid");
-        case 81 : return Mix_LoadMUS("data/music/Magasin.mid");
-        case 83 : return Mix_LoadMUS("data/music/Maison.mid");
-        case 85 : return Mix_LoadMUS("data/music/Potion.mid");
-        case 89 : return Mix_LoadMUS("data/music/Jeu.mid");
-        case 95 : return Mix_LoadMUS("data/music/Maire.mid");
-        case 119 : return Mix_LoadMUS("data/music/Cafe.mid");
-        case 144 : return Mix_LoadMUS("data/music/Sages.mid");
-        case 150 : return Mix_LoadMUS("data/music/Opera.mid");
-        case 151 : return Mix_LoadMUS("data/music/Epee.mid");
-        case 154 : return Mix_LoadMUS("data/music/Prison.mid");
-        case 155 : return Mix_LoadMUS("data/music/ChateauF.mid");
-        case 218 : return Mix_LoadMUS("data/music/probleme.mid");
-        case 219 : return Mix_LoadMUS("data/music/Epee.mid");
-        case 180 : return Mix_LoadMUS("data/music/Titre.mid");
-        case 190 : return Mix_LoadMUS("data/music/Selection.mid");
-        case 199 : return Mix_LoadMUS("data/music/Nuit.mid");
-        case 200 : return Mix_LoadMUS("data/music/Debut.mid");
-        default : return Mix_LoadMUS("data/music/Maison.mid");
+            return getMusic("Ombre");
+        case 33 : return getMusic("VilleF");
+        case 36 : return getMusic("BoisPerdusF");
+        case 37 : return getMusic("Cascades");
+        case 38 : return getMusic("CimetiereF");
+        case 40 : return getMusic("VillageMF");
+        case 41 : return getMusic("LacF");
+        case 42 : return getMusic("DesertF");
+        case 43 : return getMusic("VillageOF");
+        case 45 : return getMusic("MontF");
+        case 46 : return getMusic("Courage");
+        case 47 : return getMusic("Sagesse");
+        case 48 : return getMusic("Force");
+        case 49 : return getMusic("Abysses");
+        case 50 : return getMusic("PyramideF");
+        case 51 : return getMusic("PyramideP");
+        case 52 : return getMusic("Ordinn");
+        case 53 : return getMusic("Air");
+        case 54 : return getMusic("Glace");
+        case 55 : return getMusic("Feu");
+        case 56 : return getMusic("Titre");
+        case 57 : return getMusic("DFinal");
+        case 58 : return getMusic("Casino");
+        case 59 : return getMusic("Gemme");
+        case 60 : return getMusic("DestinationF");
+        case 61 : return getMusic("Cave");
+        case 79 : return getMusic("Home");
+        case 80 : return getMusic("Bar");
+        case 81 : return getMusic("Magasin");
+        case 83 : return getMusic("Maison");
+        case 85 : return getMusic("Potion");
+        case 89 : return getMusic("Jeu");
+        case 95 : return getMusic("Maire");
+        case 119 : return getMusic("Cafe");
+        case 144 : return getMusic("Sages");
+        case 150 : return getMusic("Opera");
+        case 151 : return getMusic("Epee");
+        case 154 : return getMusic("Prison");
+        case 155 : return getMusic("ChateauF");
+        case 218 : return getMusic("probleme");
+        case 219 : return getMusic("Epee");
+        case 180 : return getMusic("Titre");
+        case 190 : return getMusic("Selection");
+        case 199 : return getMusic("Nuit");
+        case 200 : return getMusic("Debut");
+        default : return getMusic("Maison");
     }
 }
 
@@ -246,36 +285,36 @@ void Audio::stopSpecial() {
 
 Mix_Music* Audio::choixSpecial(int id) {
     switch (id) {
-	case 1 : return Mix_LoadMUS("data/music/Boss.mid");
-        case 2 : return Mix_LoadMUS("data/music/Mort.mid");
-        case 3 : return Mix_LoadMUS("data/music/Epee.mid");
-        case 4 : return Mix_LoadMUS("data/music/BossF.mid");
-        case 5 : return Mix_LoadMUS("data/music/Fin.mid");
-        case 6 : return Mix_LoadMUS("data/music/BossM.mid");
-        case 7 : return Mix_LoadMUS("data/music/Area81.mid");
-        case 8 : return Mix_LoadMUS("data/music/OniLink.mid");
-        case 9 : return Mix_LoadMUS("data/music/probleme.mid");
-        case 10 : return Mix_LoadMUS("data/music/Harpie.mid");
-        case 11 : return Mix_LoadMUS("data/music/Crabe.mid");
-        case 12 : return Mix_LoadMUS("data/music/Imp.mid");
-        case 13 : return Mix_LoadMUS("data/music/Masamune.mid");
-        case 14 : return Mix_LoadMUS("data/music/ZoraS.mid");
-        case 15 : return Mix_LoadMUS("data/music/Marlag.mid");
-        case 16 : return Mix_LoadMUS("data/music/Fantomas.mid");
-        case 17 : return Mix_LoadMUS("data/music/Vampire.mid");
-        case 18 : return Mix_LoadMUS("data/music/Araignee.mid");
-        case 19 : return Mix_LoadMUS("data/music/Plumes.mid");
-        case 20 : return Mix_LoadMUS("data/music/Garuda.mid");
-        case 21 : return Mix_LoadMUS("data/music/Heckran.mid");
-        case 22 : return Mix_LoadMUS("data/music/Sun.mid");
-        case 23 : return Mix_LoadMUS("data/music/Orcus.mid");
-        case 24 : return Mix_LoadMUS("data/music/Agahnim.mid");
-        case 25 : return Mix_LoadMUS("data/music/Zelda.mid");
-        case 26 : return Mix_LoadMUS("data/music/AgahnimFinal.mid");
-        case 27 : return Mix_LoadMUS("data/music/GanondorfFinal.mid");
-        case 28 : return Mix_LoadMUS("data/music/Quizz.mid");
-        case 29 : return Mix_LoadMUS("data/music/FinalBattle.mid");
-        default : return Mix_LoadMUS("data/music/Boss.mid");
+	case 1 : return getMusic("Boss");
+        case 2 : return getMusic("Mort");
+        case 3 : return getMusic("Epee");
+        case 4 : return getMusic("BossF");
+        case 5 : return getMusic("Fin");
+        case 6 : return getMusic("BossM");
+        case 7 : return getMusic("Area81");
+        case 8 : return getMusic("OniLink");
+        case 9 : return getMusic("probleme");
+        case 10 : return getMusic("Harpie");
+        case 11 : return getMusic("Crabe");
+        case 12 : return getMusic("Imp");
+        case 13 : return getMusic("Masamune");
+        case 14 : return getMusic("ZoraS");
+        case 15 : return getMusic("Marlag");
+        case 16 : return getMusic("Fantomas");
+        case 17 : return getMusic("Vampire");
+        case 18 : return getMusic("Araignee");
+        case 19 : return getMusic("Plumes");
+        case 20 : return getMusic("Garuda");
+        case 21 : return getMusic("Heckran");
+        case 22 : return getMusic("Sun");
+        case 23 : return getMusic("Orcus");
+        case 24 : return getMusic("Agahnim");
+        case 25 : return getMusic("Zelda");
+        case 26 : return getMusic("AgahnimFinal");
+        case 27 : return getMusic("GanondorfFinal");
+        case 28 : return getMusic("Quizz");
+        case 29 : return getMusic("FinalBattle");
+        default : return getMusic("Boss");
     }
 }
 

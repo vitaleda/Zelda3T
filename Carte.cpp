@@ -34,26 +34,26 @@ void Carte::init() {
         switch (gpJeu->getEpoque()) {
             case T_PASSE :
                 if (!gpJoueur->getCoffre(15, 2)) 
-                    tmp = IMG_Load("data/images/carte/monde1-1.png");
-                else tmp = IMG_Load("data/images/carte/monde1-2.png");
+                    tmp = gpJeu->loadImg("data/images/carte/monde1-1.png");
+                else tmp = gpJeu->loadImg("data/images/carte/monde1-2.png");
                 break;
             case T_PRESENT :
                 if (gpJoueur->getAvancement()>=PORTAIL_PRE_PRESENT_UTILISE
                 && gpJoueur->getAvancement()<PORTAIL_PRE_PRESENT_FERME) {
                     if (gpJoueur->getAvancement()<PONT_CONSTRUIT) 
-                        tmp = IMG_Load("data/images/carte/monde4-1.png");
-                    else tmp = IMG_Load("data/images/carte/monde4-2.png");
+                        tmp = gpJeu->loadImg("data/images/carte/monde4-1.png");
+                    else tmp = gpJeu->loadImg("data/images/carte/monde4-2.png");
                 } else if (gpJoueur->getTroc(M_ROUAGE)!=0) 
-                    tmp = IMG_Load("data/images/carte/monde2-1.png");
+                    tmp = gpJeu->loadImg("data/images/carte/monde2-1.png");
                 else if (gpJoueur->getCoffre(15,27)==15)
-                    tmp = IMG_Load("data/images/carte/monde2-3.png");
-                else tmp = IMG_Load("data/images/carte/monde2-2.png");
+                    tmp = gpJeu->loadImg("data/images/carte/monde2-3.png");
+                else tmp = gpJeu->loadImg("data/images/carte/monde2-2.png");
                 break;
             case T_FUTUR : 
                 if (!gpJoueur->hasObjet(O_FFEU) || !gpJoueur->hasObjet(O_FGLACE)
                 || !gpJoueur->hasObjet(O_FLUM) || !gpJoueur->hasBouteille(3))
-                    tmp = IMG_Load("data/images/carte/monde3-1.png"); 
-                else tmp = IMG_Load("data/images/carte/monde3-2.png"); 
+                    tmp = gpJeu->loadImg("data/images/carte/monde3-1.png"); 
+                else tmp = gpJeu->loadImg("data/images/carte/monde3-2.png"); 
                 break;
             default :
                 break;
@@ -66,7 +66,7 @@ void Carte::init() {
         if (gpJeu->getKeyboard()->getMode() == 22) {
             gpJeu->getKeyboard()->setTelep(0); return;}
         
-        tmp = IMG_Load("data/images/carte/link.png");
+        tmp = gpJeu->loadImg("data/images/carte/link.png");
         SDL_SetColorKey(tmp,SDL_SRCCOLORKEY,SDL_MapRGB(tmp->format,0,0,255));
         src.w = 14; src.h = 12; src.x = 0; src.y = 0; 
         if (gpJoueur->isLapin()) {src.w = 16; src.h = 15; src.x = 14;}
@@ -156,7 +156,7 @@ void Carte::initDonjon() {
     SDL_Rect dst;
     Joueur* gpJoueur = gpJeu->getJoueur();
     
-    SDL_Surface* tmp = IMG_Load("data/images/carte/donjon.png");
+    SDL_Surface* tmp = gpJeu->loadImg("data/images/carte/donjon.png");
     src.w = 320; src.h = 240; src.x = 0; src.y = 0; dst.y = 0; dst.x = 0;
     SDL_BlitSurface(tmp, &src, image, &dst);
     SDL_FreeSurface(tmp);
@@ -182,7 +182,7 @@ void Carte::initEtage() {
         case 14 : src.y=32; src.h=32; break;
     }
     
-    SDL_Surface* tmp = IMG_Load("data/images/carte/level.png");
+    SDL_Surface* tmp = gpJeu->loadImg("data/images/carte/level.png");
     SDL_BlitSurface(tmp, &src, image, &dst);
     SDL_FreeSurface(tmp);
     
@@ -199,12 +199,12 @@ void Carte::initEtage() {
     }
     src.h = 16; src.w = 32;src.x = 0;src.y=32-levely*16;dst.x = 40; dst.y = 96-levely*16;
     
-    tmp = IMG_Load("data/images/carte/level2.png");
+    tmp = gpJeu->loadImg("data/images/carte/level2.png");
     SDL_BlitSurface(tmp, &src, image, &dst);
     SDL_FreeSurface(tmp);
     
     //étage de link
-    tmp = IMG_Load("data/images/carte/link.png");
+    tmp = gpJeu->loadImg("data/images/carte/link.png");
     SDL_SetColorKey(tmp,SDL_SRCCOLORKEY,SDL_MapRGB(tmp->format,0,0,255));
     src.h = 12; src.w = 14;src.x = 0;src.y=0;
     dst.x = 25; dst.y = 98-gpJeu->getMonde()->etage()*16;
@@ -242,13 +242,13 @@ void Carte::initCarte() {
     os << (zone-46+1);
     os2 << levely;
     
-    SDL_Surface* tmp = IMG_Load(("data/images/carte/d"+os.str()+"e"+os2.str()+".png").c_str());
+    SDL_Surface* tmp = gpJeu->loadImg(("data/images/carte/d"+os.str()+"e"+os2.str()+".png").c_str());
     src.x=0; src.y=0; src.w=tmp->w; src.h=tmp->h; dst.y = 48+dy*16; dst.x = 128+dx*16;
     SDL_BlitSurface(tmp, &src, image, &dst);
     SDL_FreeSurface(tmp);
     
     
-    tmp = IMG_Load(("data/images/carte/nd"+os.str()+"e"+os2.str()+".png").c_str());
+    tmp = gpJeu->loadImg(("data/images/carte/nd"+os.str()+"e"+os2.str()+".png").c_str());
     
     int di=0;
     int dj=0;
@@ -286,7 +286,7 @@ void Carte::initCarte() {
     
     //étage de link
     if (gpJeu->getMonde()->etage() == levely/* && ((zone-46)!=11 || levely==0)*/) {
-        tmp = IMG_Load("data/images/carte/link.png");
+        tmp = gpJeu->loadImg("data/images/carte/link.png");
         SDL_SetColorKey(tmp,SDL_SRCCOLORKEY,SDL_MapRGB(tmp->format,0,0,255));
         src.h = 12; src.w = 14;src.x = 0;src.y=0;
         dst.x = 128+(dx-di)*16+(gpJoueur->getX()/20)-6; 
@@ -302,7 +302,7 @@ void Carte::initBoussole() {
     int zone = gpJeu->getZone();
     Joueur* gpJoueur = gpJeu->getJoueur();
     
-    SDL_Surface* tmp = IMG_Load("data/images/carte/boussole.png");
+    SDL_Surface* tmp = gpJeu->loadImg("data/images/carte/boussole.png");
     SDL_SetColorKey(tmp,SDL_SRCCOLORKEY,SDL_MapRGB(tmp->format,0,0,255));
     
     switch (zone-46) {
@@ -1098,7 +1098,7 @@ void Carte::draw(SDL_Surface* gpScreen) {
         
         
         
-        SDL_Surface* tmp = IMG_Load("data/images/carte/link.png");
+        SDL_Surface* tmp = gpJeu->loadImg("data/images/carte/link.png");
         SDL_SetColorKey(tmp,SDL_SRCCOLORKEY,SDL_MapRGB(tmp->format,0,0,255));
         src.w = 14; src.h = 12; src.x = 0; src.y = 0; 
         

@@ -31,43 +31,43 @@ rebond(false), element(FEU) {
         case 1 : // boule de feu petite
         case 21 : //vise ennemi
             w=7; h=7; force=2; renvoyable=true;
-            image = IMG_Load("data/images/objet/projectiles2.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles2.png");
             break;
         case 2 : // boule de feu petite droite
             if (angly!=0) {h=16;w=7;}
             if (anglx!=0) {h=7;w=16;}
             force=4; max=1;
-            image = IMG_Load("data/images/objet/projectiles3.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles3.png");
             break;
         case 3 : // arc magique
             if (angly!=0) {h=8;w=16;}
             if (anglx!=0) {h=16;w=8;}
             force=6; max=1; renvoyable=true; element=ENNEMI;
-            image = IMG_Load("data/images/objet/projectiles4.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles4.png");
             break;
         case 4 : // boulet
             w=8; h=13; force=2; element=PROJECTILE;
-            image = IMG_Load("data/images/objet/projectiles5.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles5.png");
             break;
         case 5 : // boule magique
             w=16; h=16; force=7; renvoyable=true; element=ENNEMI; max=1;
-            image = IMG_Load("data/images/objet/projectiles6.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles6.png");
             break;
         case 6 : // eclair
             w=83; h=148; force=15; element=ENNEMI; max=4; anglx=0; angly=0;
-            image = IMG_Load("data/images/objet/projectiles8.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles8.png");
             break;
         case 7 : // lapin
             w=22; h=22; force=0; element=LAPIN; max=1;
-            image = IMG_Load("data/images/objet/projectiles7.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles7.png");
             break;
         case 8 : // boule de feu violette
             w=7; h=7; force=0; renvoyable=true; element=DEMI;
-            image = IMG_Load("data/images/objet/projectiles9.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles9.png");
             break;
         case 9 : // boule de feu bleue
             w=7; h=7; force=0; renvoyable=true; element=COLERE;
-            image = IMG_Load("data/images/objet/projectiles10.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles10.png");
             break;
         case 10 : // boule de feu grosse
         case 20 : // boule de feu grosse de type ENNEMI
@@ -76,44 +76,44 @@ rebond(false), element(FEU) {
             else if (id==11) {force=6; element=COUP_GLACE;}
             else {force=8; element=ENNEMI;}
             w=16; h=16; renvoyable=true; max=1;
-            image = IMG_Load("data/images/objet/projectiles11.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles11.png");
             break;
         case 12 : // boule de feu verte
             w=7; h=7; force=0; renvoyable=true; element=MORTEL;
-            image = IMG_Load("data/images/objet/projectiles12.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles12.png");
             break;
         case 13 : // saoul
             w=22; h=22; force=0; element=SAOUL; max=1;
-            image = IMG_Load("data/images/objet/projectiles13.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles13.png");
             break;
         case 14 : // chauve souris de feu
             w=28; h=16; force=35; renvoyable=false; element=FEU; max=4;
-            image = IMG_Load("data/images/objet/projectiles14.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles14.png");
             break;
         case 15 : // arc de vent
             angly=2; anglx=0; {h=16;w=64;}
             force=0; max=0; renvoyable=false; element=ENNEMI;
-            image = IMG_Load("data/images/objet/projectiles15.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles15.png");
             break;
         case 16 : // boule d'ombre petite droite
             if (angly!=0) {h=16;w=7;}
             if (anglx!=0) {h=7;w=16;}
             force=4; max=1; element=OMBRE;
-            image = IMG_Load("data/images/objet/projectiles16.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles16.png");
             break;
         case 17 : // arc magique d'ombre
             if (angly!=0) {h=8;w=16;}
             if (anglx!=0) {h=16;w=8;}
             force=6; max=1; renvoyable=true; element=OMBRE;
-            image = IMG_Load("data/images/objet/projectiles17.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles17.png");
             break;
         case 18 : // boule d'ombre petite
             w=7; h=7; force=5; renvoyable=true; element=OMBRE;
-            image = IMG_Load("data/images/objet/projectiles18.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles18.png");
             break;
         case 19 : // boule de feu ultime
             w=31; h=31; force=80; renvoyable=false; element=FEU; max=3;
-            image = IMG_Load("data/images/objet/projectiles19.png");
+            image = gpJeu->loadImg("data/images/objet/projectiles19.png");
             break;
     }
     

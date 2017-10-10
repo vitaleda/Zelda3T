@@ -12,7 +12,7 @@
 
 Poissons::Poissons(Jeu* jeu) : gpJeu(jeu), page(0) {
     image = SDL_CreateRGBSurface(SDL_HWSURFACE, 320, 240, 32, 0, 0, 0, 0);
-    imageCadre = IMG_Load("data/images/menu/cadres.png");
+    imageCadre = gpJeu->loadImg("data/images/menu/cadres.png");
 }
 
 Poissons::~Poissons() {

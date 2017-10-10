@@ -31,9 +31,9 @@ glisse(0), vitesse(0), oldxg(0), oldyg(0), immo(false), loader(false), verse(0),
 tempsVisible(false), compteurVisible(false), ennVisible(false), compteur(0), compteurEnn(0), 
 cptType(0) {
     image = NULL;
-    imageSpin = IMG_Load("data/images/link/spin.png");
+    imageSpin = gpJeu->loadImg("data/images/link/spin.png");
     SDL_SetColorKey(imageSpin,SDL_SRCCOLORKEY,SDL_MapRGB(imageSpin->format,0,0,255));
-    imageObjets = IMG_Load("data/images/link/objets.png");
+    imageObjets = gpJeu->loadImg("data/images/link/objets.png");
     SDL_SetColorKey(imageObjets,SDL_SRCCOLORKEY,SDL_MapRGB(imageObjets->format,0,0,255));
     x=152-32-8;y=72-16;w=16;h=24;viemax=6;vie=viemax;magie=magiemax;
     for (int i = 0; i < 12; i++) compteurType[i]=0;
@@ -95,7 +95,11 @@ void Joueur::save() {
     if (tps > 359999) tps = 359999;
     ostringstream im;
     im << numSave;
+#ifdef __PSP2__
+    ofstream f(("ux0:data/z3t/save/3t" + im.str() + ".dat").c_str(),ios::out | ios::binary);
+#else
     ofstream f(("data/save/3t" + im.str() + ".dat").c_str(),ios::out | ios::binary);
+#endif
     f.write((char *)&tps,sizeof(int));
     f.write((char *)&zone,sizeof(int));
     f.write((char *)&xd,sizeof(int));
@@ -163,7 +167,11 @@ void Joueur::load() {
     int zone;
     ostringstream im;
     im << numSave;
+#ifdef __PSP2__
+    ifstream f(("ux0:data/z3t/save/3t" + im.str() + ".dat").c_str(),ios::in | ios::binary);
+#else
     ifstream f(("data/save/3t" + im.str() + ".dat").c_str(),ios::in | ios::binary);
+#endif
     if(!f.is_open()) return;
     f.read((char *)&temps,sizeof(int));
     f.read((char *)&zone,sizeof(int)); gpJeu->setZone(zone);
@@ -316,7 +324,7 @@ void Joueur::setIvre() {if (ivre < 1000) ivre+=100;}
 void Joueur::draw(SDL_Surface* gpScreen) {
     
     /*if (!getOnilink() && getAvancement()==16) {
-        imageTmp = IMG_Load("data/images/ennemi/ennemi75.png");
+        imageTmp = gpJeu->loadImg("data/images/ennemi/ennemi75.png");
         SDL_SetColorKey(imageTmp,SDL_SRCCOLORKEY,SDL_MapRGB(imageTmp->format,0,0,255));
     }
     if (getAvancement()>=16 && getAvancement()<62) {
@@ -857,8 +865,8 @@ void Joueur::setBouclier(int b) {
     if (!bouclier) return;
     std::ostringstream im;
     im << bouclier;
-    if (oni) boucl = new Bouclier(IMG_Load("data/images/link/bouclierOni.png"), 10);
-    else boucl = new Bouclier(IMG_Load(("data/images/link/bouclier" + im.str() + ".png").c_str()), bouclier);
+    if (oni) boucl = new Bouclier(gpJeu->loadImg("data/images/link/bouclierOni.png"), 10);
+    else boucl = new Bouclier(gpJeu->loadImg(("data/images/link/bouclier" + im.str() + ".png").c_str()), bouclier);
 }
 
 void Joueur::setTunique(int t) {
@@ -866,8 +874,8 @@ void Joueur::setTunique(int t) {
     SDL_FreeSurface(image);
     std::ostringstream im;
     im << tunique;
-    if (oni) image = IMG_Load("data/images/link/onilink.png");
-    else image = IMG_Load(("data/images/link/link" + im.str() + ".png").c_str());
+    if (oni) image = gpJeu->loadImg("data/images/link/onilink.png");
+    else image = gpJeu->loadImg(("data/images/link/link" + im.str() + ".png").c_str());
     SDL_SetColorKey(image,SDL_SRCCOLORKEY,SDL_MapRGB(image->format,0,0,255));
 }
 
@@ -878,8 +886,8 @@ void Joueur::setEpee(int e) {
     if (!epee) return;
     std::ostringstream im;
     im << epee;
-    if (oni) imageEpee = IMG_Load("data/images/link/epeeOni.png");
-    else imageEpee = IMG_Load(("data/images/link/epee" + im.str() + ".png").c_str());
+    if (oni) imageEpee = gpJeu->loadImg("data/images/link/epeeOni.png");
+    else imageEpee = gpJeu->loadImg(("data/images/link/epee" + im.str() + ".png").c_str());
     SDL_SetColorKey(imageEpee,SDL_SRCCOLORKEY,SDL_MapRGB(imageEpee->format,0,0,255));
 }
 

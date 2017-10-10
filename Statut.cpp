@@ -21,11 +21,11 @@
 Statut::Statut(Jeu* jeu) : gpJeu(jeu), jauge(false), valjauge(0), maxjauge(10), nivjauge(50), 
 valjauge2(0), maxjauge2(10), nivjauge2(60), dec(0) {
     
-    imageStatut = IMG_Load("data/images/statut/statut.png");
-    imageChiffre = IMG_Load("data/images/statut/chiffres.png");
-    imageInventaire = IMG_Load("data/images/statut/inventaire.png");
-    imageTroc = IMG_Load("data/images/objet/troc.png");
-    imageGemmes = IMG_Load("data/images/objet/gemmes.png");
+    imageStatut = gpJeu->loadImg("data/images/statut/statut.png");
+    imageChiffre = gpJeu->loadImg("data/images/statut/chiffres.png");
+    imageInventaire = gpJeu->loadImg("data/images/statut/inventaire.png");
+    imageTroc = gpJeu->loadImg("data/images/objet/troc.png");
+    imageGemmes = gpJeu->loadImg("data/images/objet/gemmes.png");
     
     SDL_SetColorKey(imageStatut,SDL_SRCCOLORKEY,SDL_MapRGB(imageStatut->format,0,0,255));
     SDL_SetColorKey(imageChiffre,SDL_SRCCOLORKEY,SDL_MapRGB(imageChiffre->format,0,0,255));

@@ -30,6 +30,8 @@ class Audio {
     private :
         void loadSounds();
         void freeSounds();
+        Mix_Chunk* getSound(const char *son);
+        Mix_Music* getMusic(const char *zik);
         Mix_Music* choixMusique(int id);
         Mix_Music* choixSpecial(int id);
         
@@ -39,6 +41,10 @@ class Audio {
         int specialId;
         Mix_Chunk** sons;
         Mix_Music* music;
+#ifdef __PSP2__
+        char* mem;
+        FILE* f;
+#endif
 
 };
 
