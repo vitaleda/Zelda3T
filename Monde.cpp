@@ -80,7 +80,11 @@ Monde::~Monde() {
     for (int i = 0; i < 7; i++) SDL_FreeSurface(image[i]);
     SDL_FreeSurface(imagetransit);
     SDL_FreeSurface(imagelevel);
-    for (int i = 0; i < 19; i++) SDL_FreeSurface(imageSpe[i]);
+    for (int i = 0; i < 19; i++) {
+        if (i != 8) {
+            SDL_FreeSurface(imageSpe[i]);
+        }
+    }
 }
 
 void Monde::changeZone(int newZone) {
