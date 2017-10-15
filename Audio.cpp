@@ -148,7 +148,7 @@ Mix_Music* Audio::getMusic(const char* zik) {
     fread(mem, 1, info.st_size, f);
     return Mix_LoadMUS_RW(SDL_RWFromMem(mem, info.st_size));
 #else
-	printf("La zik %s\n", zik);
+    snprintf(fZik, sizeof(fZik), "%s/%s.mid", "data/music", zik);
     return Mix_LoadMUS(fZik);
 #endif
 }
