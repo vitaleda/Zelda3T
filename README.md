@@ -1,12 +1,9 @@
 # Port of Zelda Time to Triumph for PS Vita
 
 ## VPK
-Latest version is available [here](https://www.ferb.fr/vita/vpks/Zelda3T.vpk)
+Latest version is available [here](https://www.ferb.fr/vita/vpks/Zelda3T.vpk). External data files are **not** required anymore.
 
-## Data (required)
-Extract the [z3t.zip](https://www.mediafire.com/file/1hk6vy7436wu17u/z3t.zip) archive to `ux0:data/`
-
-**WARNING:** If you downloaded the archive before 2017-10-15, you need to overwrite the music file [Nuit.ogg](https://1fichier.com/?5ek4ql5l3u) into `ux0:/data/z3t/data/music`
+Note: saves can be found in `ux0:data/z3t/save` directory.
 
 ## Controls:
 
@@ -41,7 +38,9 @@ Extract the [z3t.zip](https://www.mediafire.com/file/1hk6vy7436wu17u/z3t.zip) ar
 ## Credits:
 
 - Vincent Jouillat, for [Original game](http://www.zeldaroth.fr/us/z3t.php)
-- [Nop90](https://www.github.com/nop90/Zelda3T), for his 3DS port that contains several memory leaks fixes I included in this port.
+- [Nop90](https://www.github.com/nop90/Zelda3T), for:
+  - his 3DS port that contains several memory leaks fixes I included in this port.
+  - the "Impulse tracker" musics provided in his fork
 - littlebalup, for key mapping inspiration
 
 ## Changelog:
