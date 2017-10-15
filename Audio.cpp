@@ -31,7 +31,11 @@ Audio::Audio() : musiqueId(0), specialId(0) {
     if(SDL_InitSubSystem(SDL_INIT_AUDIO) == -1) SOUND = false;
     
     if (SOUND) {
+#ifdef __PSP2__
+        Mix_OpenAudio(22050, AUDIO_S16SYS, 1, 1024);
+#else
         Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 2048);
+#endif
         previous_volume = Mix_VolumeMusic(32);
         loadSounds();
         setVolson(32);
@@ -130,7 +134,7 @@ void Audio::freeMusic() {
 Mix_Chunk* Audio::getSound(const char* son) {
     char fSon[512];
 #ifdef __PSP2__
-    snprintf(fSon, sizeof(fSon), "%s/%s.ogg", "ux0:data/z3t/data/sound", son);
+    snprintf(fSon, sizeof(fSon), "%s/%s.ogg", "app0:data/sound", son);
 #else
     snprintf(fSon, sizeof(fSon), "%s/%s.ogg", "data/sound", son);
 #endif
@@ -141,14 +145,14 @@ Mix_Music* Audio::getMusic(const char* zik) {
     char fZik[512];
 #ifdef __PSP2__
     struct stat info;
-    snprintf(fZik, sizeof(fZik), "%s/%s.ogg", "ux0:data/z3t/data/music", zik);
+    snprintf(fZik, sizeof(fZik), "%s/%s.it", "app0:data/music", zik);
     stat(fZik, &info);
     f = fopen(fZik, "rb");
     mem = (char*)malloc(info.st_size);
     fread(mem, 1, info.st_size, f);
     return Mix_LoadMUS_RW(SDL_RWFromMem(mem, info.st_size));
 #else
-    snprintf(fZik, sizeof(fZik), "%s/%s.mid", "data/music", zik);
+    snprintf(fZik, sizeof(fZik), "%s/%s.it", "data/music", zik);
     return Mix_LoadMUS(fZik);
 #endif
 }
