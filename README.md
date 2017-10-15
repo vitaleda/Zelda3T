@@ -4,7 +4,7 @@
 Latest version is available [here](https://www.ferb.fr/vita/vpks/Zelda3T.vpk)
 
 ## Data (required)
-Extract the [z3t.zip](https://www.mediafire.com/file/099ap8ss9r3oqsk/z3t.zip) archive to `ux0:data/`
+Extract the [z3t.zip](https://www.mediafire.com/file/1hk6vy7436wu17u/z3t.zip) archive to `ux0:data/`
 
 **WARNING:** If you downloaded the archive before 2017-10-15, you need to overwrite the music file [Nuit.ogg](https://1fichier.com/?5ek4ql5l3u) into `ux0:/data/z3t/data/music`
 
