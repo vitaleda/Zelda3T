@@ -24,6 +24,7 @@ Audio::Audio() : musiqueId(0), specialId(0) {
     SOUND = true;
     music = NULL;
 #ifdef __PSP2__
+    f = NULL;
     mem = NULL;
 #endif
     
@@ -43,7 +44,7 @@ Audio::~Audio() {
         Mix_PauseMusic();
         Mix_VolumeMusic(previous_volume);
         Mix_HaltMusic();
-        Mix_FreeMusic(music);
+        freeMusic();
         Mix_CloseAudio();
     }
 }
@@ -112,6 +113,20 @@ void Audio::freeSounds() {
     }
 }
 
+void Audio::freeMusic() {
+    Mix_FreeMusic(music);
+#ifdef __PSP2__
+    if (mem != NULL) {
+        free(mem);
+        mem = NULL;
+    }
+    if (f != NULL) {
+        fclose(f);
+        f = NULL;
+    }
+#endif
+}
+
 Mix_Chunk* Audio::getSound(const char* son) {
     char fSon[512];
 #ifdef __PSP2__
@@ -128,18 +143,12 @@ Mix_Music* Audio::getMusic(const char* zik) {
     struct stat info;
     snprintf(fZik, sizeof(fZik), "%s/%s.ogg", "ux0:data/z3t/data/music", zik);
     stat(fZik, &info);
-    if (f != NULL) {
-        fclose(f);
-    }
-    if (mem != NULL) {
-        free(mem);
-    }
     f = fopen(fZik, "rb");
     mem = (char*)malloc(info.st_size);
     fread(mem, 1, info.st_size, f);
     return Mix_LoadMUS_RW(SDL_RWFromMem(mem, info.st_size));
 #else
-    snprintf(fZik, sizeof(fZik), "%s/%s", "data/music", zik);
+	printf("La zik %s\n", zik);
     return Mix_LoadMUS(fZik);
 #endif
 }
@@ -171,7 +180,7 @@ void Audio::playMusic(int id) {
 	    musiqueId = id;            
             if (specialId == 0) {
 		Mix_HaltMusic();
-		Mix_FreeMusic(music);
+        freeMusic();
 		music = choixMusique(id);
 		Mix_PlayMusic(music,-1);
 		specialId = 0;
@@ -267,7 +276,7 @@ void Audio::playSpecial(int id) {
     if (SOUND) {
         if (specialId != id) {
             Mix_HaltMusic();
-            Mix_FreeMusic(music);
+            freeMusic();
             music = choixSpecial(id);
             Mix_PlayMusic(music,-1);
             specialId=id;
