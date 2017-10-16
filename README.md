@@ -45,5 +45,9 @@ Note: saves can be found in `ux0:data/z3t/save` directory.
 
 ## Changelog:
 
+1.1:
+- Fix more memory leaks
+- External datas are not required anymore (about 195 Mb space gained)
+
 1.0:
 - First public release
