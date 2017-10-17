@@ -32,6 +32,14 @@ menu(false), text(false), vueHorz(0), vueVert(0) {
     gpPiege = NULL; gpPnj = NULL; gpJoueur = NULL; gpMonde = NULL; gpMenu = NULL;
     gpStatut = NULL;
     gpTexte = new Texte(this);
+
+    gpProjectileOld = NULL;
+    gpObjetOld = NULL;
+    gpSnipeOld = NULL;
+    gpCaisseOld = NULL;
+    gpEnnemiOld = NULL;
+    gpPiegeOld = NULL;
+    gpPnjOld = NULL;
 }
 
 Jeu::~Jeu() {
@@ -47,6 +55,29 @@ Jeu::~Jeu() {
     delete gpEnnemi;
     delete gpPiege;
     delete gpPnj;
+
+    if (gpProjectileOld != NULL) {
+        delete gpProjectileOld;
+    }
+    if (gpObjetOld != NULL) {
+        delete gpObjetOld;
+    }
+    if (gpSnipeOld != NULL) {
+        delete gpSnipeOld;
+    }
+    if (gpCaisseOld != NULL) {
+        delete gpCaisseOld;
+    }
+    if (gpEnnemiOld != NULL) {
+        delete gpEnnemiOld;
+    }
+    if (gpPiegeOld != NULL) {
+        delete gpPiegeOld;
+    }
+    if (gpPnjOld != NULL) {
+        delete gpPnjOld;
+    }
+
     SDL_FreeSurface(imageObjets);
 }
 
@@ -99,12 +130,33 @@ void Jeu::init(int save) {
     gpStatut = new Statut(this);
     //gpAudio->playMusic(zone);
     
+    if (gpProjectileOld != NULL) {
+        delete gpProjectileOld;
+    }
     gpProjectileOld = NULL;
+    if (gpObjetOld != NULL) {
+        delete gpObjetOld;
+    }
     gpObjetOld = NULL;
+    if (gpSnipeOld != NULL) {
+        delete gpSnipeOld;
+    }
     gpSnipeOld = NULL;
+    if (gpCaisseOld != NULL) {
+        delete gpCaisseOld;
+    }
     gpCaisseOld = NULL;
+    if (gpEnnemiOld != NULL) {
+        delete gpEnnemiOld;
+    }
     gpEnnemiOld = NULL;
+    if (gpPiegeOld != NULL) {
+        delete gpPiegeOld;
+    }
     gpPiegeOld = NULL;
+    if (gpPnjOld != NULL) {
+        delete gpPnjOld;
+    }
     gpPnjOld = NULL;
     
     if ((zone == 18 || zone == 19) && 
