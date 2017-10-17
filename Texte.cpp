@@ -556,7 +556,11 @@ void Texte::chercheText() {
             || gpJeu->getJoueur()->getTroc(M_PARFUM)<1) idsuiv=75;
             break;
         case 266 : texte = "The Pegasus boots for a tapestry and a perfume? *              yes              NO ?"; idsuiv=76; break;
+#ifdef __PSP2__
+        case 267 : texte = "You got the Pegasus boots! *Hold R to run!"; break;
+#else
         case 267 : texte = "You got the Pegasus boots! *Hold Shift or press Capslock to run!"; break;
+#endif
         case 268 : 
             texte = "A perfume for 3 feathers and 4 bags of rice? **              YES ?            no  "; 
             if (gpJeu->getJoueur()->getTroc(M_PLUME)<3
@@ -643,7 +647,11 @@ void Texte::chercheText() {
         case 313 : texte = "You traded the little bell for an axe!"; break;
         case 314 : texte = "Ho! Ho! Ho!"; buffer="That's all very well, but how do I go home?"; break;
         case 315 : texte = "TUTORIAL :*A hit on one of these colored sphere switch the stumbling blocks."; break;
+#ifdef __PSP2__
+        case 316 : texte = "You have found a sword!!!*Use it with Square, or keep Square holded to charge a spin attack!"; break;
+#else
         case 316 : texte = "You have found a sword!!!*Use it with the key Z (or W), or keep Z (or W) holded to charge a spin attack!"; break;
+#endif
         case 317 : texte = "TUTORIAL :*Falling in a hole will bring you at the floor below. However, if there is no floor below like here, a fall will make you lose life and will bring at the entry of the area, so be careful!"; break;
         case 318 : texte = "TUTORIAL :*During the game, you might see some spots apparently inaccessible, like the platform underneath. You will then have"; buffer="to come back later with more equipment to reach it."; break;
         case 319 : texte = "@+@+@+@+@+@+@@@+*@=++=@=+@=+@=+=@*+@+@+@+=+="; break;
@@ -785,7 +793,11 @@ void Texte::chercheText() {
         case 387 : texte = "The detector for 20 power gems, ok?**              YES ?            no  ";
             if (gpJeu->getJoueur()->getGemme()<20) idsuiv=385; break;
         case 388 : texte = "The detector for 20 power gems, ok?**              yes              NO ?"; break;
+#ifdef __PSP2__
+        case 389 : texte = "You got the detector!*When you press Cross, the number of gems in you possession is written in green if you have all the gems of the area."; break;
+#else
         case 389 : texte = "You got the detector!*When you press enter, the number of gems in you possession is written in green if you have all the gems of the area."; break;
+#endif
         case 390 : 
             if (gpJeu->getJoueur()->hasBouteille(0)) {id=393; chercheText(); break;}
             texte = "An empty bottle for 10 power gems?**              YES ?            no  ";
@@ -882,7 +894,11 @@ void Texte::chercheText() {
         case 440 : texte = "I could fix the lever, but I need a replacement part, and I can't leave my post..."; idsuiv=441; break;
         case 441 : texte = "I need a cogwheel, they can be found at the marketplace of Hyrule City."; idsuiv=442; break;
         case 442 : texte = "You know how it works, don't you? Each stallholder offers some products for others, you've got to gather what they want in order to get what you want."; idsuiv=443; break;
+#ifdef __PSP2__
+        case 443 : texte = "I will give you the merchandises I already have.*If you want to see what you have in you bag, press Left D-Pad."; break;
+#else
         case 443 : texte = "I will give you the merchandises I already have.*If you want to see what you have in you bag, press I."; break;
+#endif
         case 444 : 
             if (gpJeu->getJoueur()->getTroc(M_ROUAGE)==0) {id=446; chercheText();break;}
             if (gpJeu->getJoueur()->getTroc(M_ROUAGE)>0) {id=445; chercheText();break;}
@@ -940,7 +956,11 @@ void Texte::chercheText() {
         case 474 : texte = "Don't tell me you want to participate for free???*               yeah            NO ?"; idsuiv=476; break;
         case 475 : texte = "...*Here is a fishing rod, come back when you've caught 5 different types of fish."; break;
         case 476 : texte = "Go away, enemy of fishermen!"; break;
+#ifdef __PSP2__
+        case 477 : texte = "You got a fishing rod!*Use it on a pontoon, then bring the fish up pressing Triangle when the line is moving."; break;
+#else
         case 477 : texte = "You got a fishing rod!*Use it on a pontoon, then bring the fish up pressing X when the line is moving."; break;
+#endif
         case 478 : 
             if (gpJeu->getJoueur()->hasObjet(O_POISSONS)) {id=487; chercheText();break;}
             if (gpJeu->getJoueur()->nbPoissons()>=5) {id=479; chercheText();break;}
@@ -953,7 +973,11 @@ void Texte::chercheText() {
         case 481 : texte = "I guess you want your price now...*Well, as a reward for your victory in the fishing contest: *... ... ..."; idsuiv=482; break;
         case 482 : texte = "I hire you!"; idsuiv=483; break;
         case 483 : texte = "There are a lot of other types of fish in Hyrule, I want to list them all by area."; idsuiv=484; break;
+#ifdef __PSP2__
+        case 484 : texte = "I will reward you each time you bring me 5 new types of fish.*From now on you can consult the list pressing Down D-Pad."; idsuiv=485; break;
+#else
         case 484 : texte = "I will reward you each time you bring me 5 new types of fish.*From now on you can consult the list pressing L."; idsuiv=485; break;
+#endif
         case 485 : texte = "With your current fishing rod, you will unfortunately be able to catch only little fish..."; break;
         case 486 : texte = "Be sure to go fishing every where!*Each fish caught give you some energy, did you notice?"; break;
         case 487 :
@@ -1825,7 +1849,11 @@ void Texte::chercheText() {
         case 944 : texte = "You found the Boss Key!!!**Use it to open his haunt."; break;
         case 945 : texte = "You found a little key.**Use it to unlock a door."; break;
         case 946 : texte = "You found a new heart!!! **Your amount of life increases by one heart!!!"; break;
+#ifdef __PSP2__
+        case 947 : texte = "You found a bow!!!**Equip it by pressing entry then use it with Triangle to attack from a distance!"; break;
+#else
         case 947 : texte = "You found a bow!!!**Equip it by pressing entry then use it with X to attack from a distance!"; break;
+#endif
         case 948 : 
             if (gpJeu->getZone()==47) {id=949; chercheText();break;}
             if (gpJeu->getZone()==48) {id=950; chercheText();break;}
@@ -1930,7 +1958,11 @@ void Texte::chercheText() {
             texte = "The Princess instructed you with investigating the Ocarina theft? *In that case you can go. There is nothing left to steal anyway..."; break;
         case 1023: texte = "I was guarding this door last night. I am absolutely sure no one came through it..."; break;
         case 1024: texte = "That's where the Ocarina was kept. The guard heard a big noise. But before he realized it was coming from inside the room, the safe had been cleared out."; idsuiv=1025; break;
+#ifdef __PSP2__
+        case 1025: texte = "If you see anything suspicious, go in front of it and press Circle to point it out to me."; break;
+#else
         case 1025: texte = "If you see anything suspicious, go in front of it and press SPACE to point it out to me."; break;
+#endif
         case 1026: texte = "It's a torch... What were you expecting for? A ceiling chandelier?"; break;
         case 1027: texte = "This safe is the one in which the Ocarina was kept. Until last night..."; break;
         case 1028: 
@@ -2429,7 +2461,11 @@ void Texte::chercheText() {
             if (gpJeu->getJoueur()->getCoffre(14,15)) {id=1334; chercheText();break;}
             if (gpJeu->getJoueur()->getCompteurEnn() >= 50 && gpJeu->getJoueur()->getCompteurType() >= 7) {id=1335; chercheText();break;}
             texte = "Eliminate at least 50 enemies of 7 various types and I will open the door."; break;
+#ifdef __PSP2__
+        case 1342: texte = "You have found the Mask of Oni Link !!! *Hold R then press L to transform yourself and become incredibly powerful."; break;
+#else
         case 1342: texte = "You have found the Mask of Oni Link !!! *Use 'O' to transform yourself and become incredibly powerful."; break;
+#endif
         case 1343: texte = "Congratulations Link! You've defeated every single type of enemy... It's incredible..."; idsuiv=1344; break;
         case 1344: texte = "I owe you a lot, do you want to be paid now?"; idsuiv=1345; break;
         case 1345: texte = "I'm finally able to take back my original form, be ready to take a lot!*Farewell, Hero of Hyrule!"; break;
