@@ -628,7 +628,7 @@ void Keyboard::pollKeys(Uint8* keys) {
             
             if (!(keys[SDLK_x] || buttonPressed(BTN_TRIANGLE)) && tmpx) tmpx=0;
             
-            if (leverJeter && !tmpc && !gpJoueur->getCharge() && gpJoueur->getVie()>0
+            if ((keys[SDLK_c] || leverJeter) && !tmpc && !gpJoueur->getCharge() && gpJoueur->getVie()>0
             && !gpJoueur->isLapin() && !gpJeu->getStop() && !gpJoueur->getImmo()) {
                 if (gpJoueur->getTypeAnim()==AUCUNE || gpJoueur->getTypeAnim()==MARCHE)
                     gpJeu->ramasse();
@@ -647,7 +647,7 @@ void Keyboard::pollKeys(Uint8* keys) {
                 gpJeu->lire();
             }
             
-            if ((keys[SDLK_p] || (buttonPressed(BTN_LTRIGGER) && !buttonPressed(BTN_LTRIGGER))) && (gpJoueur->hasObjet(O_CARTE) || gpJeu->isDonjon()) && 
+            if ((keys[SDLK_p] || (buttonPressed(BTN_LTRIGGER) && !buttonPressed(BTN_RTRIGGER))) && (gpJoueur->hasObjet(O_CARTE) || gpJeu->isDonjon()) && 
             (gpJeu->isDehors() || gpJeu->isDonjon())
             && !gpJeu->getStop() && gpJoueur->getVie()>0 && !tmpp) {
                 mode = 12;
