@@ -130,7 +130,7 @@ int Keyboard::attendEntreeOuTemps(Uint32 t) {
     while (SDL_GetTicks() - tc < t) {
     while (SDL_PollEvent(&event)) {}
     k = SDL_GetKeyState(NULL);
-    if (k[SDLK_RETURN]) return 1;
+    if (k[SDLK_RETURN] || buttonPressed(BTN_CROSS)) return 1;
     SDL_Delay(20);
     }
     return 0;
