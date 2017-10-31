@@ -1,7 +1,7 @@
 # Port of Zelda Time to Triumph for PS Vita
 
 ## VPK
-Latest version is available [here](https://www.ferb.fr/vita/vpks/Zelda3T.vpk). External data files are **not** required anymore.
+Latest version is available [here](https://github.com/usineur/Zelda3T/releases).
 
 Note: saves can be found in `ux0:data/z3t/save` directory.
 
