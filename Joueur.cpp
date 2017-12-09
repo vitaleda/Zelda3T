@@ -95,7 +95,7 @@ void Joueur::save() {
     if (tps > 359999) tps = 359999;
     ostringstream im;
     im << numSave;
-#ifdef __PSP2__
+#ifdef __vita__
     ofstream f(("ux0:data/z3t/save/3t" + im.str() + ".dat").c_str(),ios::out | ios::binary);
 #else
     ofstream f(("data/save/3t" + im.str() + ".dat").c_str(),ios::out | ios::binary);
@@ -167,7 +167,7 @@ void Joueur::load() {
     int zone;
     ostringstream im;
     im << numSave;
-#ifdef __PSP2__
+#ifdef __vita__
     ifstream f(("ux0:data/z3t/save/3t" + im.str() + ".dat").c_str(),ios::in | ios::binary);
 #else
     ifstream f(("data/save/3t" + im.str() + ".dat").c_str(),ios::in | ios::binary);
