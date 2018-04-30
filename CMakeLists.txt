@@ -12,13 +12,12 @@ endif()
 # Project start
 set(VITA_APPNAME Zelda3T)
 set(VITA_TITLEID "ZELDATTT1")
-set(VITA_VERSION "01.00")
 
 project(${VITA_APPNAME})
 include("${VITASDK}/share/vita.cmake" REQUIRED)
 
 # Flags and includes
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-exceptions")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-exceptions -fpermissive")
 
 link_directories(
   ${CMAKE_CURRENT_BINARY_DIR}
@@ -62,7 +61,8 @@ target_link_libraries(${VITA_APPNAME}
   mikmod
   jpeg
   png
-  vita2d
+  vitaGL
+  imgui
   z
   SceAudio_stub
   SceCtrl_stub
@@ -71,6 +71,7 @@ target_link_libraries(${VITA_APPNAME}
   SceHid_stub
   ScePower_stub
   SceSysmodule_stub
+  SceTouch_stub
 )
 
 file(GLOB_RECURSE ASSETS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} data/*)
@@ -86,7 +87,6 @@ ENDFOREACH()
 # Create Vita artifacts
 vita_create_self(eboot.bin ${VITA_APPNAME} UNSAFE)
 vita_create_vpk(${VITA_APPNAME}.vpk ${VITA_TITLEID} eboot.bin
-  VERSION ${VITA_VERSION}
   NAME ${VITA_APPNAME}
   FILE res/icon0.png sce_sys/icon0.png
   FILE res/bg.png sce_sys/livearea/contents/bg.png
