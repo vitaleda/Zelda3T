@@ -15,6 +15,7 @@
 #include "Texte.h"
 #include "Projectile.h"
 #include "Jeu.h"
+#include "Lang.h"
 
 #include <iostream>
 
@@ -63,7 +64,7 @@ void Statut::drawBoss(SDL_Surface* gpScreen) {
     
     if (jauge==true || nivjauge<50 || nivjauge2<60) {
         
-        //armée de Ganon dans OLB
+        //armÃ©e de Ganon dans OLB
         /*if (gpJeu->getZone() == 9) {
             valjauge=gpJeu->nbEnnemis();
             maxjauge=20;
@@ -245,9 +246,13 @@ void Statut::drawVie(SDL_Surface* gpScreen) {
     Joueur* gpJoueur = gpJeu->getJoueur();
     
     //life
-    src.h = 7+1;src.w = 44;
-    dst.x = 250;dst.y = 10;
-    src.x=158;src.y=0;
+    int langId = getLanguage();
+    src.h = (langId == LANG_FR) ? 8 : 7;
+    src.w = 44;
+    dst.x = 250;
+    dst.y = 10;
+    src.x=158;
+    src.y = (langId == LANG_FR) ? 17 : 0;
     SDL_BlitSurface(imageStatut, &src, gpScreen, &dst);
     
     for(int i=0; i < gpJoueur->getVieMax()/2; i++) {
@@ -273,7 +278,7 @@ void Statut::drawItems(SDL_Surface* gpScreen) {
     dst.x =129;dst.y = 10;
     switch (gpJeu->getEpoque()) {
         case T_PASSE :
-            //pièce d'or
+            //piÃ¨ce d'or
             if (gpJoueur->getPieceMax()==0) break;
             src.x=52;src.y=18;
             SDL_BlitSurface(imageStatut, &src, gpScreen, &dst);
@@ -323,7 +328,7 @@ void Statut::drawItems(SDL_Surface* gpScreen) {
         drawNombre(gpScreen, gpJoueur->getFleche(), gpJoueur->getFlecheMax(),177,20,2);
     }
     
-    //clées
+    //clÃ©es
     if (gpJeu->isDonjon() || (gpJeu->getZone() == 155 && gpJoueur->getCle())) {
         src.h = 8;src.w = 8;
         dst.x =89;dst.y = 10;
@@ -362,7 +367,7 @@ void Statut::drawItems(SDL_Surface* gpScreen) {
         drawNombre(gpScreen, t, 30,320-32+8,16*14,2);
     }
     
-    //dégâts destination finale
+    //dÃ©gÃ¢ts destination finale
     if (gpJoueur->isCompteurVisible() && gpJeu->getZone()==60) {
         src.h = 7; src.w = 7; src.y=9; src.x=141;
         int h = 16*14; int d = gpJoueur->getCompteur();
@@ -436,7 +441,7 @@ void Statut::drawNombre(SDL_Surface* gpScreen, int val, int max, int x, int y, i
         dst.x += 8;
     }
     
-    //unitées
+    //unitÃ©es
     dst.y = y;
     val2 = val%10;
     src.x = (val2%5)*8;

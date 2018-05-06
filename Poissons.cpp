@@ -64,7 +64,7 @@ void Poissons::fond() {
     
     
     ostringstream os; os << (page+1);
-    gpJeu->affiche(image, "FISHES "+os.str(), 40, 17);
+    gpJeu->afficheTexteAvecId(image, 500, os.str(), 40, 17);
     
     placeCadres();
     
@@ -220,36 +220,36 @@ void Poissons::cadre(int x, int y, int w, int h, int id) {
     
     if (gpJeu->getJoueur()->getPoisson(id)) {
         switch (id) {
-            case 0 : gpJeu->affiche(image, "Crawfish", x+8, y+8); break;
-            case 1 : gpJeu->affiche(image, "Smelt", x+8, y+8); break;
-            case 2 : gpJeu->affiche(image, "Zebrafish", x+8, y+8); break;
-            case 3 : gpJeu->affiche(image, "Goby", x+8, y+8); break;
-            case 4 : gpJeu->affiche(image, "Crab", x+8, y+8); break;
-            case 5 : gpJeu->affiche(image, "Eel larvae", x+8, y+8); break;
-            case 6 : gpJeu->affiche(image, "Minnow", x+8, y+8); break;
-            case 7 : gpJeu->affiche(image, "Goldfish", x+8, y+8); break;
-            case 8 : gpJeu->affiche(image, "Bleak", x+8, y+8); break;
-            case 9 : gpJeu->affiche(image, "Gudgeon", x+8, y+8); break;
-            case 10 : gpJeu->affiche(image, "Loach", x+8, y+8); break;
-            case 11 : gpJeu->affiche(image, "Stickleback", x+8, y+8); break;
-            case 12 : gpJeu->affiche(image, "Ruffe", x+8, y+8); break;
-            case 13 : gpJeu->affiche(image, "Blenny", x+8, y+8); break;
-            case 14 : gpJeu->affiche(image, "Magikarp", x+8, y+8); break;
-            case 15 : gpJeu->affiche(image, "Trout", x+8, y+8); break;
-            case 16 : gpJeu->affiche(image, "Ayu", x+8, y+8); break;
-            case 17 : gpJeu->affiche(image, "Black perch", x+8, y+8); break;
-            case 18 : gpJeu->affiche(image, "Eel", x+8, y+8); break;
-            case 19 : gpJeu->affiche(image, "Catfish", x+8, y+8); break;
-            case 20 : gpJeu->affiche(image, "Largemouth", x+8, y+8); break;
-            case 21 : gpJeu->affiche(image, "Huchen", x+8, y+8); break;
-            case 22 : gpJeu->affiche(image, "Barbell", x+8, y+8); break;
-            case 23 : gpJeu->affiche(image, "Lamprey", x+8, y+8); break;
-            case 24 : gpJeu->affiche(image, "Nase", x+8, y+8); break;
-            case 25 : gpJeu->affiche(image, "Salmon", x+8, y+8); break;
-            case 26 : gpJeu->affiche(image, "Sturgeon", x+8, y+8); break;
-            case 27 : gpJeu->affiche(image, "Arctic charr", x+8, y+8); break;
-            case 28 : gpJeu->affiche(image, "Carp", x+8, y+8); break;
-            case 29 : gpJeu->affiche(image, "Brown bullhead", x+8, y+8); break;
+            case 0 : gpJeu->afficheTexteAvecId(image, 501, x+8, y+8); break;
+            case 1 : gpJeu->afficheTexteAvecId(image, 502, x+8, y+8); break;
+            case 2 : gpJeu->afficheTexteAvecId(image, 503, x+8, y+8); break;
+            case 3 : gpJeu->afficheTexteAvecId(image, 504, x+8, y+8); break;
+            case 4 : gpJeu->afficheTexteAvecId(image, 505, x+8, y+8); break;
+            case 5 : gpJeu->afficheTexteAvecId(image, 506, x+8, y+8); break;
+            case 6 : gpJeu->afficheTexteAvecId(image, 507, x+8, y+8); break;
+            case 7 : gpJeu->afficheTexteAvecId(image, 508, x+8, y+8); break;
+            case 8 : gpJeu->afficheTexteAvecId(image, 509, x+8, y+8); break;
+            case 9 : gpJeu->afficheTexteAvecId(image, 510, x+8, y+8); break;
+            case 10 : gpJeu->afficheTexteAvecId(image, 511, x+8, y+8); break;
+            case 11 : gpJeu->afficheTexteAvecId(image, 512, x+8, y+8); break;
+            case 12 : gpJeu->afficheTexteAvecId(image, 513, x+8, y+8); break;
+            case 13 : gpJeu->afficheTexteAvecId(image, 514, x+8, y+8); break;
+            case 14 : gpJeu->afficheTexteAvecId(image, 515, x+8, y+8); break;
+            case 15 : gpJeu->afficheTexteAvecId(image, 516, x+8, y+8); break;
+            case 16 : gpJeu->afficheTexteAvecId(image, 517, x+8, y+8); break;
+            case 17 : gpJeu->afficheTexteAvecId(image, 518, x+8, y+8); break;
+            case 18 : gpJeu->afficheTexteAvecId(image, 519, x+8, y+8); break;
+            case 19 : gpJeu->afficheTexteAvecId(image, 520, x+8, y+8); break;
+            case 20 : gpJeu->afficheTexteAvecId(image, 521, x+8, y+8); break;
+            case 21 : gpJeu->afficheTexteAvecId(image, 522, x+8, y+8); break;
+            case 22 : gpJeu->afficheTexteAvecId(image, 523, x+8, y+8); break;
+            case 23 : gpJeu->afficheTexteAvecId(image, 524, x+8, y+8); break;
+            case 24 : gpJeu->afficheTexteAvecId(image, 525, x+8, y+8); break;
+            case 25 : gpJeu->afficheTexteAvecId(image, 526, x+8, y+8); break;
+            case 26 : gpJeu->afficheTexteAvecId(image, 527, x+8, y+8); break;
+            case 27 : gpJeu->afficheTexteAvecId(image, 528, x+8, y+8); break;
+            case 28 : gpJeu->afficheTexteAvecId(image, 529, x+8, y+8); break;
+            case 29 : gpJeu->afficheTexteAvecId(image, 530, x+8, y+8); break;
         }
     } else gpJeu->affiche(image, "???", x+8, y+8);
 }

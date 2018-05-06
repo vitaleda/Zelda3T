@@ -339,92 +339,92 @@ void Menu::drawEquipe(SDL_Surface* gpScreen) {
     switch(obj) {
         case 0 : 
             if (gpJoueur->hasObjet(O_ARC)==2)
-                gpJeu->affiche(gpScreen, "BOW", 184,24-dec);
+                gpJeu->afficheTexteAvecId(gpScreen, 400, 184,24-dec);
             if (gpJoueur->hasObjet(O_ARC)==5)
-                gpJeu->affiche(gpScreen, "FAIRY BOW", 184,24-dec);
+                gpJeu->afficheTexteAvecId(gpScreen, 401, 184,24-dec);
             break;
         case 1 : 
             if (gpJoueur->hasObjet(O_GRAPPIN))
-                gpJeu->affiche(gpScreen, "HOOKSHOT", 184,24-dec);
+                gpJeu->afficheTexteAvecId(gpScreen, 402, 184,24-dec);
             break;
         case 2 : 
             if (gpJoueur->hasObjet(O_SAC_BOMBES) && gpJoueur->getBombe())
-                gpJeu->affiche(gpScreen, "BOMBS", 184,24-dec);
+                gpJeu->afficheTexteAvecId(gpScreen, 403, 184,24-dec);
             break;
         case 3 :
             if (gpJoueur->hasObjet(O_FFEU)) {
-                gpJeu->affiche(gpScreen, "FIRE ARROWS", 184,24-dec);
+                gpJeu->afficheTexteAvecId(gpScreen, 404, 184,24-dec);
                 break;
             }
             switch (gpJoueur->hasObjet(O_TROC1)) {
-                case 1 : gpJeu->affiche(gpScreen, "RED GEMSTONE", 184,24-dec); break;
-                case 2 : gpJeu->affiche(gpScreen, "ANVIL", 184,24-dec); break;
+                case 1 : gpJeu->afficheTexteAvecId(gpScreen, 405, 184,24-dec); break;
+                case 2 : gpJeu->afficheTexteAvecId(gpScreen, 406, 184,24-dec); break;
                 case 3 : if (!gpJoueur->getCoffre(15,14)) 
-                    gpJeu->affiche(gpScreen, "HORSESHOE", 184,24-dec); break;
-                case 4 : gpJeu->affiche(gpScreen, "JEWEL", 184,24-dec); break;
-                case 5 : gpJeu->affiche(gpScreen, "LETTER", 184,24-dec); break;
+                    gpJeu->afficheTexteAvecId(gpScreen, 407, 184,24-dec); break;
+                case 4 : gpJeu->afficheTexteAvecId(gpScreen, 408, 184,24-dec); break;
+                case 5 : gpJeu->afficheTexteAvecId(gpScreen, 409, 184,24-dec); break;
                 case 6 : if (!gpJoueur->getCoffre(15,26)) 
-                    gpJeu->affiche(gpScreen, "WEDDING RING", 184,24-dec); break;
-                case 7 : gpJeu->affiche(gpScreen, "HAMMER", 184,24-dec); break;
+                    gpJeu->afficheTexteAvecId(gpScreen, 410, 184,24-dec); break;
+                case 7 : gpJeu->afficheTexteAvecId(gpScreen, 411, 184,24-dec); break;
             }
             break;
         case 4 : 
             if (gpJoueur->hasObjet(O_BFEU))
-                gpJeu->affiche(gpScreen, "FIRE ROD", 184,24-dec);
+                gpJeu->afficheTexteAvecId(gpScreen, 412, 184,24-dec);
             break;
         case 5 : 
             if (gpJoueur->hasObjet(O_BGLACE))
-                gpJeu->affiche(gpScreen, "ICE ROD", 184,24-dec);
+                gpJeu->afficheTexteAvecId(gpScreen, 413, 184,24-dec);
             break;
         case 6 : 
             if (gpJoueur->hasObjet(O_LANTERNE))
-                gpJeu->affiche(gpScreen, "LANTERN", 184,24-dec);
+                gpJeu->afficheTexteAvecId(gpScreen, 414, 184,24-dec);
             break;
         case 7 :
             if (gpJoueur->hasObjet(O_FGLACE)) {
-                gpJeu->affiche(gpScreen, "ICE ARROWS", 184,24-dec);
+                gpJeu->afficheTexteAvecId(gpScreen, 415, 184,24-dec);
                 break;
             }
             switch (gpJoueur->hasObjet(O_TROC2)) {
-                case 1 : gpJeu->affiche(gpScreen, "BLUE GEMSTONE", 184,24-dec); break;
-                case 2 : gpJeu->affiche(gpScreen, "OLD BOOT", 184,24-dec); break;
-                case 3 : gpJeu->affiche(gpScreen, "HEAVY HAMMER", 184,24-dec); break;
-                case 4 : gpJeu->affiche(gpScreen, "LITTLE BELL", 184,24-dec); break;
-                case 5 : gpJeu->affiche(gpScreen, "AXE", 184,24-dec); break;
-                case 6 : gpJeu->affiche(gpScreen, "ROPE", 184,24-dec); break;
-                case 7 : gpJeu->affiche(gpScreen, "BRIDGE'S PLAN", 184,24-dec); break;
+                case 1 : gpJeu->afficheTexteAvecId(gpScreen, 416, 184,24-dec); break;
+                case 2 : gpJeu->afficheTexteAvecId(gpScreen, 417, 184,24-dec); break;
+                case 3 : gpJeu->afficheTexteAvecId(gpScreen, 418, 184,24-dec); break;
+                case 4 : gpJeu->afficheTexteAvecId(gpScreen, 419, 184,24-dec); break;
+                case 5 : gpJeu->afficheTexteAvecId(gpScreen, 420, 184,24-dec); break;
+                case 6 : gpJeu->afficheTexteAvecId(gpScreen, 421, 184,24-dec); break;
+                case 7 : gpJeu->afficheTexteAvecId(gpScreen, 422, 184,24-dec); break;
             }
             break;
         case 8 : 
             if (gpJoueur->hasObjet(O_MARTEAU))
-                gpJeu->affiche(gpScreen, "MAGIC HAMMER", 184,24-dec);
+                gpJeu->afficheTexteAvecId(gpScreen, 423, 184,24-dec);
             break;
         case 9 : 
             if (gpJoueur->hasObjet(O_OCARINA))
-                gpJeu->affiche(gpScreen, "OCARINA OF TIME", 184,24-dec);
+                gpJeu->afficheTexteAvecId(gpScreen, 424, 184,24-dec);
             break;
         case 10 : 
             if (gpJoueur->hasObjet(O_CANNE)==1)
-                gpJeu->affiche(gpScreen, "FISHING ROD", 184,24-dec);
+                gpJeu->afficheTexteAvecId(gpScreen, 425, 184,24-dec);
             if (gpJoueur->hasObjet(O_CANNE)==2)
-                gpJeu->affiche(gpScreen, "SUPER FISHING ROD", 184,24-dec);
+                gpJeu->afficheTexteAvecId(gpScreen, 426, 184,24-dec);
             if (gpJoueur->hasObjet(O_CANNE)==3)
-                gpJeu->affiche(gpScreen, "MEGA FISHING ROD", 184,24-dec);
+                gpJeu->afficheTexteAvecId(gpScreen, 427, 184,24-dec);
             break;
         case 11 :
             if (gpJoueur->hasObjet(O_FLUM)) {
-                gpJeu->affiche(gpScreen, "LIGHT ARROWS", 184,24-dec);
+                gpJeu->afficheTexteAvecId(gpScreen, 428, 184,24-dec);
                 break;
             }
             switch (gpJoueur->hasObjet(O_TROC3)) {
-                case 1 : gpJeu->affiche(gpScreen, "YELLOW GEMSTONE", 184,24-dec); break;
-                case 2 : gpJeu->affiche(gpScreen, "BOTTLE OF WINE", 184,24-dec); break;
-                case 3 : gpJeu->affiche(gpScreen, "GOLD DUST", 184,24-dec); break;
-                case 4 : gpJeu->affiche(gpScreen, "MAGIC MIRROR", 184,24-dec); break;
-                case 5 : gpJeu->affiche(gpScreen, "SPOON", 184,24-dec); break;
-                case 6 : gpJeu->affiche(gpScreen, "SKULL", 184,24-dec); break;
-                case 7 : gpJeu->affiche(gpScreen, "IOU", 184,24-dec); break;
-                case 8 : gpJeu->affiche(gpScreen, "SAW", 184,24-dec); break;
+                case 1 : gpJeu->afficheTexteAvecId(gpScreen, 429, 184,24-dec); break;
+                case 2 : gpJeu->afficheTexteAvecId(gpScreen, 430, 184,24-dec); break;
+                case 3 : gpJeu->afficheTexteAvecId(gpScreen, 431, 184,24-dec); break;
+                case 4 : gpJeu->afficheTexteAvecId(gpScreen, 432, 184,24-dec); break;
+                case 5 : gpJeu->afficheTexteAvecId(gpScreen, 433, 184,24-dec); break;
+                case 6 : gpJeu->afficheTexteAvecId(gpScreen, 434, 184,24-dec); break;
+                case 7 : gpJeu->afficheTexteAvecId(gpScreen, 435, 184,24-dec); break;
+                case 8 : gpJeu->afficheTexteAvecId(gpScreen, 436, 184,24-dec); break;
             }
             break;
         case 12 :
@@ -435,19 +435,19 @@ void Menu::drawEquipe(SDL_Surface* gpScreen) {
                 case 0 : 
                     if (obj != 15) break;
                     switch (gpJoueur->hasObjet(O_TROC4)) {
-                        case 1 : gpJeu->affiche(gpScreen, "GREEN GEMSTONE", 184,24-dec); break;
-                        case 2 : gpJeu->affiche(gpScreen, "CHART", 184,24-dec); break;
-                        case 3 : gpJeu->affiche(gpScreen, "BROOM", 184,24-dec); break;
-                        case 4 : gpJeu->affiche(gpScreen, "MARMELADE POT", 184,24-dec); break;
-                        case 5 : gpJeu->affiche(gpScreen, "CROISSANT", 184,24-dec); break;
-                        case 6 : gpJeu->affiche(gpScreen, "BEER", 184,24-dec); break;
-                        case 7 : gpJeu->affiche(gpScreen, "NAILS", 184,24-dec); break;
+                        case 1 : gpJeu->afficheTexteAvecId(gpScreen, 437, 184,24-dec); break;
+                        case 2 : gpJeu->afficheTexteAvecId(gpScreen, 438, 184,24-dec); break;
+                        case 3 : gpJeu->afficheTexteAvecId(gpScreen, 439, 184,24-dec); break;
+                        case 4 : gpJeu->afficheTexteAvecId(gpScreen, 440, 184,24-dec); break;
+                        case 5 : gpJeu->afficheTexteAvecId(gpScreen, 441, 184,24-dec); break;
+                        case 6 : gpJeu->afficheTexteAvecId(gpScreen, 442, 184,24-dec); break;
+                        case 7 : gpJeu->afficheTexteAvecId(gpScreen, 443, 184,24-dec); break;
                     }
                     break;
-                case 1 : gpJeu->affiche(gpScreen, "EMPTY BOTTLE", 184,24-dec); break;
-                case 2 : gpJeu->affiche(gpScreen, "RED POTION", 184,24-dec); break;
-                case 3 : gpJeu->affiche(gpScreen, "GREEN POTION", 184,24-dec); break;
-                case 4 : gpJeu->affiche(gpScreen, "BLUE POTION", 184,24-dec); break;
+                case 1 : gpJeu->afficheTexteAvecId(gpScreen, 444, 184,24-dec); break;
+                case 2 : gpJeu->afficheTexteAvecId(gpScreen, 445, 184,24-dec); break;
+                case 3 : gpJeu->afficheTexteAvecId(gpScreen, 446, 184,24-dec); break;
+                case 4 : gpJeu->afficheTexteAvecId(gpScreen, 447, 184,24-dec); break;
             }
             break;
     }
@@ -497,7 +497,7 @@ void Menu::drawInventaire(SDL_Surface* gpScreen) {
         }
     }
     
-    //troc 1 ou flèche feu
+    //troc 1 ou flÃ¨che feu
     if (gpJoueur->hasObjet(O_FFEU)) {
         src.x=0; src.y=136; dst.x=128-dec; dst.y=32;
         if (dst.x > -15) {
@@ -554,7 +554,7 @@ void Menu::drawInventaire(SDL_Surface* gpScreen) {
         }
     }
     
-    //troc 2 ou flèche glace
+    //troc 2 ou flÃ¨che glace
     if (gpJoueur->hasObjet(O_FGLACE)) {
         src.x=16; src.y=136; dst.x=128-dec; dst.y=64;
         if (dst.x > -15) {
@@ -599,7 +599,7 @@ void Menu::drawInventaire(SDL_Surface* gpScreen) {
         }
     }
     
-    //canne à pêche
+    //canne Ã  pÃªche
     if (gpJoueur->hasObjet(O_CANNE)) {
         src.y=119; dst.x=96-dec; dst.y=96;
         src.x=(gpJoueur->hasObjet(O_CANNE)-1)*16;
@@ -610,7 +610,7 @@ void Menu::drawInventaire(SDL_Surface* gpScreen) {
         }
     }
     
-    //troc 3 ou flèche lumière
+    //troc 3 ou flÃ¨che lumiÃ¨re
     if (gpJoueur->hasObjet(O_FLUM)) {
         src.x=32; src.y=136; dst.x=128-dec; dst.y=96;
         if (dst.x > -15) {
@@ -693,7 +693,7 @@ void Menu::drawStatut(SDL_Surface* gpScreen) {
             gpJoueur->getForce(), 10, 191, 72-3+3-dec, nb_chiffres);
     }
     
-    //défense
+    //dÃ©fense
     if (gpJoueur->getDefense() > 9) nb_chiffres=2; else nb_chiffres=1;
     src.w=12; src.h=12; src.x=136; src.y=32; dst.x=207; dst.y=72-3-dec;
     if (dst.y > -15) {
@@ -764,7 +764,7 @@ void Menu::drawStatut(SDL_Surface* gpScreen) {
             gpJoueur->getGanon() + gpJoueur->getBoostGanon()
             , gpJoueur->getGanonMax(), 200+32+4+decx, 88-4+5-dec, nb_chiffres);
             
-    //bourse pièces d'or
+    //bourse piÃ¨ces d'or
     src.w=16; src.h=16; src.y=48; dst.x=184+64+8+4; dst.y=88-4-dec;
     nb_chiffres=3;
     switch(gpJoueur->getPieceMax()) {
@@ -826,7 +826,7 @@ void Menu::drawStatut(SDL_Surface* gpScreen) {
     int haut=120-dec;
     if (gpJoueur->nbCristaux()==0) haut=136+2-dec;
     
-    if (gpJoueur->getAvancement() >= STELE_LUE) { //stèle lue
+    if (gpJoueur->getAvancement() >= STELE_LUE) { //stÃªle lue
     for (int i = 0; i < 3; i++) {
         dst.y=haut;
         if (gpJoueur->hasMedaillon(i)) src.x=16*i;
@@ -835,7 +835,7 @@ void Menu::drawStatut(SDL_Surface* gpScreen) {
         dst.x+=17;
     }}
     
-    //clé du temps
+    //clÃ© du temps
     if (gpJoueur->hasObjet(O_CLE_TEMPS)) {
         dst.y=haut; src.x=80;
         if (dst.y > -15) SDL_BlitSurface(imageObjets, &src, gpScreen, &dst);
@@ -849,7 +849,7 @@ void Menu::drawStatut(SDL_Surface* gpScreen) {
     }
     dst.x+=17;
     
-    //détecteur gemmes force
+    //dÃ©tecteur gemmes force
     if (gpJoueur->hasObjet(O_DETECTEUR)) {
         dst.y=haut; src.x=160; src.y=32;
         if (dst.y > -15) SDL_BlitSurface(imageObjets, &src, gpScreen, &dst);
@@ -880,7 +880,7 @@ void Menu::drawStatut(SDL_Surface* gpScreen) {
 void Menu::drawCristaux(SDL_Surface* gpScreen) {
     int dec = 200-val;
     
-    gpJeu->affiche(gpScreen, "EQUIPMENT:", 84,180+dec);
+    gpJeu->afficheTexteAvecId(gpScreen, 448, 84,180+dec);
     
     SDL_Rect src;
     SDL_Rect dst;
@@ -889,7 +889,7 @@ void Menu::drawCristaux(SDL_Surface* gpScreen) {
     
     src.y=0; src.w=16; src.h=16; dst.y=198+dec;
     
-    //épée
+    //EpÃ©e
     if (gpJoueur->getEpee()) {
         src.x = 16 * (gpJoueur->getEpee()-1); dst.x=86;
         if (gpJoueur->getOni()) src.x=112;
