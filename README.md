@@ -1,12 +1,7 @@
-# Port of Zelda Time to Triumph for PS Vita (French Version)
-
-## Why this fork ?
-The main goal was to have a french version of this game because i'm french :)
-The second one was to correct some missing references on compilation files.
-Thanks to usineur for his work and help.
+# Port of Zelda Time to Triumph for PS Vita
 
 ## VPK
-Latest version is available [here](https://github.com/NicolasR/Zelda3T-French/releases).
+Latest version is available [here](https://github.com/usineur/Zelda3T/releases/latest).
 
 Note: saves can be found in `ux0:data/z3t/save` directory.
 
@@ -51,8 +46,7 @@ Note: saves can be found in `ux0:data/z3t/save` directory.
 ## Changelog:
 
 1.2.2:
-- Added multilingual support with autodetection
-- Added English translation
+- Multilingual support, french translation and language detection (thx to @NicolasR)
 
 1.2.1:
 - Add "Fullscreen" option
@@ -61,9 +55,6 @@ Note: saves can be found in `ux0:data/z3t/save` directory.
 
 1.2:
 - SDL 1.2 (vitaGL) + imgui support (thx to @Rinnegatamante)
-
-1.1b:
-- Added missing translation
 
 1.1:
 - Fix more memory leaks
