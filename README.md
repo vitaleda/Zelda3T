@@ -45,6 +45,13 @@ Note: saves can be found in `ux0:data/z3t/save` directory.
 
 ## Changelog:
 
+1.3:
+- Many thanks to @NicolasR for:
+    - Multilingual support
+    - Language detection
+    - French translation
+    - More intuitive "Help" screens
+
 1.2.2:
 - Multilingual support, french translation and language detection (thx to @NicolasR)
 
