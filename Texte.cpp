@@ -7687,7 +7687,7 @@ void Texte::chercheText() {
             texteTmp = (this->*getTextByLangFunc)(1280, os.str())+os.str()+(this->*getTextByLangFunc)(1281, os.str());
             break;
         case 595 :
-            texte=(this->*getTextByLangFunc)(1282, os.str());
+            texteTmp = (this->*getTextByLangFunc)(1282, os.str());
             break;
         case 596 :
             if ((gpJeu->getJoueur()->getPiece() + gpJeu->getJoueur()->getBoostPiece())==0
