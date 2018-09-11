@@ -44,8 +44,9 @@ Note: saves can be found in `ux0:data/z3t/save` directory.
 - littlebalup, for key mapping inspiration
 
 ## Changelog:
-1.3.1:
-- Fix more random crashes (thx @NicolosR)
+1.3.1
+- Fix more crashes and freezes. The port seems to be very stable now.
+- Allow Link to move on 8 axis (thx to @NicolasR)
 
 1.3:
 - Many thanks to @NicolasR for:
