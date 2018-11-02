@@ -5767,7 +5767,7 @@ void Texte::chercheText() {
         case 227 :
             texteTmp = (this->*getTextByLangFunc)(846, os.str());
             if (gpJeu->getJoueur()->getAvancement()<GANON_CAPTURE)
-                texte += (this->*getTextByLangFunc)(847, os.str());
+                texteTmp += (this->*getTextByLangFunc)(847, os.str());
             break;
         case 228 :
             if (gpJeu->getJoueur()->getGemme(91)) {
